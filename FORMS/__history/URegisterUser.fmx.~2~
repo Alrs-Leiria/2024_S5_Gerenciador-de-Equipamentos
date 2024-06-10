@@ -1,0 +1,7 @@
+inherited frmRegisterUser: TfrmRegisterUser
+  Caption = 'frmRegisterUser'
+  DesignerMasterStyle = 0
+  inherited FDTransactionRegister: TFDTransaction
+    Connection = dmData.FDConnection
+  end
+end

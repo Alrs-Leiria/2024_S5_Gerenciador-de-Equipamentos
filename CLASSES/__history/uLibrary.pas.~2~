@@ -1,0 +1,7 @@
+unit uLibrary;
+
+interface
+    cprocedure setValorIni();
+implementation
+
+end.

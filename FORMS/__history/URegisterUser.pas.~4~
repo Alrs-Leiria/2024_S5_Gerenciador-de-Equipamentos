@@ -1,0 +1,72 @@
+unit URegisteruser;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  uRegister, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet, FMX.Controls.Presentation, FMX.Menus, FMX.TabControl,
+  FMX.Edit, FMX.DateTimeCtrls, FMX.ListBox;
+
+type
+  TUser = record
+    id, grupo, departamento: Integer;
+    nome, email, telefone, senha, data_cadastro, data_excluido : string;
+    ativo : Boolean;
+  end;
+  TfrmRegisterUser = class(TfrmRegister)
+    edtId: TEdit;
+    ID: TLabel;
+    Nome: TLabel;
+    edtNome: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    edtEmail: TEdit;
+    edtSenha: TEdit;
+    ComboBox1: TComboBox;
+    DateEdit1: TDateEdit;
+    CheckBox1: TCheckBox;
+    ListBoxItem1: TListBoxItem;
+    procedure btnSaveRegisterClick(Sender: TObject);
+  private
+    { Private declarations }
+
+    procedure inserirUsuarioNoBanco( usuario : TUser);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRegisterUser: TfrmRegisterUser;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmRegisterUser.btnSaveRegisterClick(Sender: TObject);
+var vUser : TUser;
+begin
+  inherited;
+
+  vUser.nome := edtNome.Text;
+  vUser.email := edtEmail.Text;
+  vUser.senha := edtSenha.Text;
+  vUser.grupo := edt.Text;
+  vUser.nome := edtNome.Text;
+  vUser.email := edtEmail.Text;
+  vUser.nome := edtNome.Text;
+  vUser.email := edtEmail.Text;
+end;
+
+procedure TfrmRegisterUser.inserirUsuarioNoBanco(usuario: TUser);
+begin
+
+end;
+
+end.

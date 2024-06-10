@@ -1,0 +1,35 @@
+unit URegisteruser;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  uRegister, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet, FMX.Controls.Presentation, FMX.Menus;
+
+type
+  TfrmRegisterUser = class(TfrmRegister)
+    procedure UsuariosClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRegisterUser: TfrmRegisterUser;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmRegisterUser.UsuariosClick(Sender: TObject);
+begin
+  inherited;
+  form.s
+end;
+
+end.

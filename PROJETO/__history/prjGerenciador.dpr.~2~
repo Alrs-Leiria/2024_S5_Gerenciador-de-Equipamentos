@@ -1,0 +1,16 @@
+program prjGerenciador;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  uMain in '..\FORMS\uMain.pas' {Form1},
+  uDataModule in '..\FORMS\uDataModule.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.

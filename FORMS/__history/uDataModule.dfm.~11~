@@ -1,0 +1,13 @@
+object dmData: TdmData
+  OnCreate = DataModuleCreate
+  Height = 255
+  Width = 465
+  PixelsPerInch = 120
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'User_Name=root'
+      'DriverID=SQLite')
+    Left = 104
+    Top = 56
+  end
+end

@@ -1,0 +1,11 @@
+unit uLibrary;
+
+interface
+  procedure setValorIni(pLocal, pSessao, pSubSessao:string; pValor:string);
+implementation
+procedure setValorIni(pLocal, pSessao, pSubSessao:string; pValor:string);
+var vArquivo : TIniFile;
+begin
+
+end;
+end.

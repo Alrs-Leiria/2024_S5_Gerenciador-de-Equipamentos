@@ -1,0 +1,4 @@
+inherited frmRegisterUser: TfrmRegisterUser
+  Caption = 'frmRegisterUser'
+  DesignerMasterStyle = 0
+end

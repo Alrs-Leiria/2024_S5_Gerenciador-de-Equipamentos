@@ -1,0 +1,16 @@
+object DataModule1: TDataModule1
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\BAN' +
+        'CO\gerenciador'
+      'User_Name=root'
+      'DriverID=SQLite')
+    LoginPrompt = False
+    Left = 432
+    Top = 224
+  end
+end

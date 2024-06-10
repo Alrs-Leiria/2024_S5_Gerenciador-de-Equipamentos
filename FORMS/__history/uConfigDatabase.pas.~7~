@@ -1,0 +1,47 @@
+unit uConfigDatabase;
+
+interface
+
+uses
+  System.SysUtils, Vcl.Forms, Vcl.Forms,  System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit, uLibrary;
+
+
+type
+  TfrmConfigDatabase = class(TForm)
+    Image1: TImage;
+    edtLocal: TEdit;
+    Label1: TLabel;
+    Button1: TButton;
+    opnPastas: TOpenDialog;
+  private
+    { Private declarations }
+    procedure configuraIni();
+  public
+    { Public declarations }
+  end;
+
+var
+  frmConfigDatabase: TfrmConfigDatabase;
+
+implementation
+
+{$R *.fmx}
+
+
+{ TfrmConfigDatabase }
+
+procedure TfrmConfigDatabase.configuraIni;
+var
+  vFileName: string;
+begin
+  if opnPastas.Execute then
+  begin
+    edtLocal.Text := opnPastas.FileName;
+    vFileName := ExtractFilePath(Application.ExeName);
+    setValorIni(vFileName, 'CONFIGURAÇÃO', 'LOCAL_DB', edtLocal.Text);
+  end;
+end;
+
+end.
