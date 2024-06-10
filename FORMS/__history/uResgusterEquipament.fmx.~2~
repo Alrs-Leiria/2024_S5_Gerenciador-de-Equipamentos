@@ -83,6 +83,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'PATRIMONIO'
         TabOrder = 11
+        OnClick = Label1Click
       end
       object Label2: TLabel
         StyledSettings = [Family, FontColor]
@@ -207,7 +208,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Position.Y = 197.000000000000000000
         TabOrder = 18
       end
-      object dData: TDateEdit
+      object DateEdit1: TDateEdit
         Date = 45452.000000000000000000
         Position.X = 374.000000000000000000
         Position.Y = 197.000000000000000000
@@ -221,7 +222,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.PlatformDefault = False
         TabOrder = 22
       end
-      object memoObservacao: TMemo
+      object Memo1: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         DataDetectorTypes = []
         Position.X = 110.000000000000000000

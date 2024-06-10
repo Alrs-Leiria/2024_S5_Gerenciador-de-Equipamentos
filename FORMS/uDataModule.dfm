@@ -10,7 +10,6 @@ object dmData: TdmData
         'Database=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\BAN' +
         'CO\gerenciador'
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
     Left = 104
     Top = 56

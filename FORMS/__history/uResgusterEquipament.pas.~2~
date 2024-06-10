@@ -39,15 +39,15 @@ type
     cbxMarca: TComboBox;
     cbxModelo: TComboBox;
     cbxDepartamento: TComboBox;
-    dData: TDateEdit;
+    DateEdit1: TDateEdit;
     CheckBox1: TCheckBox;
-    memoObservacao: TMemo;
+    Memo1: TMemo;
     Label3: TLabel;
     cbxTipo: TComboBox;
     procedure btnSaveRegisterClick(Sender: TObject);
   private
     { Private declarations }
-    procedure inserirEquipamentoNoBanco( equipamento : TEquipamento);
+    inserirEquipamentoNoBanco( equipamento : TEquipamento);
   public
     { Public declarations }
   end;
@@ -63,30 +63,23 @@ procedure TfrmRegisterEquipament.btnSaveRegisterClick(Sender: TObject);
 var vEquipamento : TEquipamento;
 begin
   inherited;
-
-
-end;
-
-
-
-procedure TfrmRegisterEquipament.inserirEquipamentoNoBanco(equipamento: TEquipamento);
-var vEquipamento : TEquipamento;
-begin
-  vEquipamento.codigo := StrToInt(edtCodigo.Text);
+  {vEquipamento.codigo := StrToInt(edtCodigo.Text);}
   vEquipamento.departamento := cbxDepartamento.ItemIndex;
   vEquipamento.tipo := cbxTipo.ItemIndex;
   vEquipamento.descricao := edtDescricao.Text;
   vEquipamento.patrimonio := edtPatrimonio.Text;
-  vEquipamento.marca := cbxMarca.ItemIndex;
-  vEquipamento.modelo := cbxModelo.ItemIndex;
+  vEquipamento.marca := edtMarca.Text;
+  vEquipamento.modelo := edtModelo.Text;
   vEquipamento.serie := edtSerie.Text;
-  vEquipamento.observacao := memoObservacao.Text;
+  vEquipamento.observacao := edtObservacao.Text;
   vEquipamento.data_cadastro := dData.Date;
   vEquipamento.data_excluido := dData.Date;
   vEquipamento.valor := StrToFloat(edtValor.Text);
-  vEquipamento.ativo := cbAtivo.Checked;
+  vEquipamento.ativo := True;
 
   inserirEquipamentoNoBanco(vEquipamento);
 end;
+
+
 
 end.

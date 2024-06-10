@@ -12,11 +12,11 @@
     <Transaction>2024/06/01 22:28:39.000.400,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
     <Transaction>2024/06/01 22:29:19.000.856,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\CLASSES\uLibrary.pas</Transaction>
     <Transaction>2024/06/02 19:25:21.000.921,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas</Transaction>
-    <Transaction>2024/06/02 19:52:46.000.530,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uConfigDatabase.fmx</Transaction>
     <Transaction>2024/06/02 19:52:46.000.530,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uConfigDatabase.pas</Transaction>
+    <Transaction>2024/06/02 19:52:46.000.530,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uConfigDatabase.fmx</Transaction>
     <Transaction>2024/06/02 22:36:23.000.353,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas</Transaction>
-    <Transaction>2024/06/02 22:37:17.000.398,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\uRegister.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas</Transaction>
     <Transaction>2024/06/02 22:37:17.000.398,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\uRegister.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.fmx</Transaction>
+    <Transaction>2024/06/02 22:37:17.000.398,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\uRegister.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas</Transaction>
     <Transaction>2024/06/02 22:50:47.000.608,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegister.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\uRegister.fmx</Transaction>
     <Transaction>2024/06/02 22:50:47.000.608,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegister.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\uRegister.pas</Transaction>
     <Transaction>2024/06/04 21:44:09.000.547,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
@@ -24,6 +24,12 @@
     <Transaction>2024/06/04 21:44:48.000.737,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\URegisteruser.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx</Transaction>
     <Transaction>2024/06/04 21:46:01.000.956,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\URegisterUser.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\URegisteruser.pas</Transaction>
     <Transaction>2024/06/04 21:46:01.000.956,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\URegisterUser.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\URegisteruser.fmx</Transaction>
+    <Transaction>2024/06/09 21:30:18.582,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2024/06/09 21:31:24.292,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\uRegisterEquipament.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2024/06/09 21:31:24.292,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\uRegisterEquipament.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx</Transaction>
+    <Transaction>2024/06/09 21:32:25.441,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2024/06/09 21:32:46.477,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uResgusterEquipament.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2024/06/09 21:32:46.477,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uResgusterEquipament.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="activity-1.1.0.dex.jar"/>
@@ -198,5 +204,9 @@
     <File Path="..\FORMS\uRegister.fmx"/>
     <File Path="..\FORMS\URegisterUser.pas"/>
     <File Path="..\FORMS\URegisterUser.fmx"/>
+    <File Path="..\FORMS\uResgusterEquipament.pas"/>
+    <File Path="..\FORMS\uResgusterEquipament.fmx"/>
+    <File Path="uRegisterEquipament.pas"/>
+    <File Path="uRegisterEquipament.fmx"/>
   </ProjectSortOrder>
 </BorlandProject>

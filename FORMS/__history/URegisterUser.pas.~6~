@@ -79,8 +79,8 @@ begin
   FDQueryRegister.SQL.Add('VALUES (:id, :nome, :email, :telefone, :senha, :grupo, :data_cadastro, :data_excluido, :ativo, :departamento)');
 
   FDQueryRegister.ParamByName('id').AsInteger := usuario.id;
-  FDQueryRegister.ParamByName('grupo').AsInteger := 1;
-  FDQueryRegister.ParamByName('departamento').AsInteger := 1;
+  FDQueryRegister.ParamByName('grupo').AsInteger := usuario.grupo;
+  FDQueryRegister.ParamByName('departamento').AsInteger := usuario.departamento;
   FDQueryRegister.ParamByName('nome').AsString := usuario.nome;
   FDQueryRegister.ParamByName('email').AsString := usuario.email;
   FDQueryRegister.ParamByName('telefone').AsString := usuario.telefone;

@@ -8,9 +8,7 @@ uses
   uLibrary in '..\CLASSES\uLibrary.pas',
   uConfigDatabase in '..\FORMS\uConfigDatabase.pas' {frmConfigDatabase},
   uRegister in '..\FORMS\uRegister.pas' {frmRegister},
-  URegisterUser in '..\FORMS\URegisterUser.pas' {frmRegisterUser},
-  uRegisterEquipament in 'uRegisterEquipament.pas' {frmRegisterEquipamento},
-  uResgusterEquipament in '..\FORMS\uResgusterEquipament.pas' {frmRegisterEquipament};
+  URegisterUser in '..\FORMS\URegisterUser.pas' {frmRegisterUser};
 
 {$R *.res}
 
@@ -21,7 +19,5 @@ begin
   Application.CreateForm(TfrmConfigDatabase, frmConfigDatabase);
   Application.CreateForm(TfrmRegister, frmRegister);
   Application.CreateForm(TfrmRegisterUser, frmRegisterUser);
-  Application.CreateForm(TfrmRegisterEquipamento, frmRegisterEquipamento);
-  Application.CreateForm(TfrmRegisterEquipament, frmRegisterEquipament);
   Application.Run;
 end.

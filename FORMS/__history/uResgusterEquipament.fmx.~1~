@@ -1,4 +1,4 @@
-inherited frmRegisterEquipament: TfrmRegisterEquipament
+inherited frmRegister1: TfrmRegister1
   Caption = 'frmRegister1'
   DesignerMasterStyle = 0
   inherited toControle: TTabControl
