@@ -213,6 +213,10 @@
             <Form>frmRegisterUser</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\FORMS\uRegisterEquipament.pas">
+            <Form>frmRegisterEquipament</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

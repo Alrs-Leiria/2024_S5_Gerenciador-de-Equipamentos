@@ -18,6 +18,11 @@ object frmMain: TfrmMain
         Text = 'Usuarios'
         OnClick = UsuariosClick
       end
+      object Equipamentos: TMenuItem
+        Locked = True
+        Text = 'Equipamentos'
+        OnClick = EquipamentosClick
+      end
     end
   end
 end

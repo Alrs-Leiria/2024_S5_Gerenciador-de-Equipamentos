@@ -8,10 +8,33 @@ uses
   uRegister, FireDAC.Stan.Intf, FireDAC.Stan.Param, FireDAC.Phys.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FMX.TabControl, FMX.Controls.Presentation;
+  FireDAC.Comp.Client, FMX.TabControl, FMX.Controls.Presentation, FMX.Edit,
+  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.DateTimeCtrls, FMX.ListBox;
 
 type
-  TfrmRegister1 = class(TfrmRegister)
+  TfrmRegisterEquipament = class(TfrmRegister)
+    edtCodigo: TEdit;
+    edtDescricao: TEdit;
+    edtSenha: TEdit;
+    edtTelefone: TEdit;
+    CODIGO: TLabel;
+    MARCA: TLabel;
+    SERIE: TLabel;
+    DEPARTAMENTO: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    DESCRICAO: TLabel;
+    VALOR: TLabel;
+    OBSERVACAO: TLabel;
+    Label1: TLabel;
+    cbxMarca: TComboBox;
+    cbxModelo: TComboBox;
+    cbxTipo: TComboBox;
+    cbxDepartamento: TComboBox;
+    DateEdit1: TDateEdit;
+    cBoxAtivo: TCheckBox;
+    Memo1: TMemo;
   private
     { Private declarations }
   public
@@ -19,7 +42,7 @@ type
   end;
 
 var
-  frmRegister1: TfrmRegister1;
+  frmRegisterEquipament: TfrmRegisterEquipament;
 
 implementation
 

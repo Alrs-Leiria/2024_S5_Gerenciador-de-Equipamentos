@@ -18,8 +18,6 @@ type
     btnDeleteRegister: TButton;
     btnCancelRegister: TButton;
     btnQuit: TButton;
-    FDUpdateRegister: TFDUpdateSQL;
-    FDTransactionRegister: TFDTransaction;
     toControle: TTabControl;
     tList: TTabItem;
     tAction: TTabItem;
@@ -72,9 +70,9 @@ procedure TfrmRegister.btnDeleteRegisterClick(Sender: TObject);
 begin
   FDQueryRegister.Edit;
   FDQueryRegister.FieldByName('DT_EXCLUIDO').AsDateTime := Date;
-  FDTransactionRegister.StartTransaction;
+  {FDTransactionRegister.StartTransaction;}
   FDQueryRegister.Post;
-  FDTransactionRegister.CommitRetaining;
+  {FDTransactionRegister.CommitRetaining;}
 end;
 
 procedure TfrmRegister.btnCancelRegisterClick(Sender: TObject);
@@ -82,7 +80,7 @@ begin
   if FDQueryRegister.State in [dsinserT, dsEdit] then
   begin
     FDQueryRegister.Cancel;
-    FDTransactionRegister.RollbackRetaining;
+    {FDTransactionRegister.RollbackRetaining;}
   end;
 
 end;

@@ -116,6 +116,8 @@ object frmRegister: TfrmRegister
       StyleLookup = ''
       TabOrder = 0
       Text = 'Listagem'
+      ExplicitSize.cx = 68.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
     end
     object tAction: TTabItem
       CustomIcon = <
@@ -128,23 +130,15 @@ object frmRegister: TfrmRegister
       StyleLookup = ''
       TabOrder = 0
       Text = 'Acao'
+      ExplicitSize.cx = 47.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
     end
-  end
-  object FDUpdateRegister: TFDUpdateSQL
-    Connection = dmData.FDConnection
-    Left = 600
-    Top = 224
-  end
-  object FDTransactionRegister: TFDTransaction
-    Connection = dmData.FDConnection
-    Left = 600
-    Top = 280
   end
   object FDQueryRegister: TFDQuery
     Connection = dmData.FDConnection
     SQL.Strings = (
       'select * from usuario')
-    Left = 600
-    Top = 168
+    Left = 592
+    Top = 288
   end
 end

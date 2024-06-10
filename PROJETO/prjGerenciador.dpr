@@ -8,8 +8,8 @@ uses
   uLibrary in '..\CLASSES\uLibrary.pas',
   uConfigDatabase in '..\FORMS\uConfigDatabase.pas' {frmConfigDatabase},
   uRegister in '..\FORMS\uRegister.pas' {frmRegister},
-  URegisterUser in '..\FORMS\URegisterUser.pas' {frmRegisterUser};
-
+  URegisterUser in '..\FORMS\URegisterUser.pas' {frmRegisterUser},
+  uRegisterEquipament in '..\FORMS\uRegisterEquipament.pas' {frmRegisterEquipament};
 
 {$R *.res}
 
@@ -20,5 +20,6 @@ begin
   Application.CreateForm(TfrmConfigDatabase, frmConfigDatabase);
   Application.CreateForm(TfrmRegister, frmRegister);
   Application.CreateForm(TfrmRegisterUser, frmRegisterUser);
+  Application.CreateForm(TfrmRegisterEquipament, frmRegisterEquipament);
   Application.Run;
 end.
