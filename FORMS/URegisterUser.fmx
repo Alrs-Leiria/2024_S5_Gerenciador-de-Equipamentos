@@ -1,7 +1,7 @@
 inherited frmRegisterUser: TfrmRegisterUser
   Caption = 'frmRegisterUser'
   DesignerMasterStyle = 0
-  inherited toControle: TTabControl
+  inherited tcControle: TTabControl
     Sizes = (
       640s
       389s
@@ -10,6 +10,67 @@ inherited frmRegisterUser: TfrmRegisterUser
     inherited tList: TTabItem
       ExplicitSize.cx = 69.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
+      object lvUsuarios: TListView
+        ItemAppearanceClassName = 'TDynamicAppearance'
+        ItemEditAppearanceClassName = 'TDynamicAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Position.X = 1.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 377.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'txtId'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 33.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = -2.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtNome'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 169.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 46.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtEmail'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 87.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 230.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtTelefone'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 71.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 334.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtGrupo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 65.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 422.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtDepartamento'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 97.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 502.000000000000000000
+          end>
+        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Text1'
+            AppearanceClassName = 'TTextObjectAppearance'
+          end>
+        OnItemClickEx = lvUsuariosItemClickEx
+      end
     end
     inherited tAction: TTabItem
       ExplicitSize.cx = 69.000000000000000000

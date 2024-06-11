@@ -1,0 +1,243 @@
+inherited frmRegisterEquipament: TfrmRegisterEquipament
+  Caption = 'frmRegister1'
+  DesignerMasterStyle = 0
+  inherited toControle: TTabControl
+    Sizes = (
+      640s
+      389s
+      640s
+      389s)
+    inherited tList: TTabItem
+      ExplicitSize.cx = 68.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+    inherited tAction: TTabItem
+      ExplicitSize.cx = 47.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object edtCodigo: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 1
+        Position.X = 8.000000000000000000
+        Position.Y = 47.000000000000000000
+        Enabled = False
+        Size.Width = 60.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object edtDescricao: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        Position.X = 110.000000000000000000
+        Position.Y = 47.000000000000000000
+        Size.Width = 339.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object edtSenha: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 13
+        Position.X = 262.000000000000000000
+        Position.Y = 128.000000000000000000
+        Size.Width = 368.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object edtTelefone: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 14
+        Position.X = 262.000000000000000000
+        Position.Y = 215.000000000000000000
+        Size.Width = 175.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object CODIGO: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 9.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 59.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'CODIGO'
+        TabOrder = 12
+      end
+      object MARCA: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 482.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 55.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'MARCA'
+        TabOrder = 9
+      end
+      object SERIE: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 262.000000000000000000
+        Position.Y = 103.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'SERIE'
+        TabOrder = 7
+      end
+      object DEPARTAMENTO: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 190.000000000000000000
+        Size.Width = 125.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'DEPARTAMENTO'
+        TabOrder = 6
+      end
+      object Label4: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 482.000000000000000000
+        Position.Y = 190.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'ATIVO'
+        TabOrder = 5
+      end
+      object Label5: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 135.000000000000000000
+        Position.Y = 190.000000000000000000
+        Size.Width = 114.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'DATA CADASTRO'
+        TabOrder = 2
+      end
+      object Label6: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 135.000000000000000000
+        Position.Y = 103.000000000000000000
+        Size.Width = 66.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'TIPO'
+        TabOrder = 8
+      end
+      object DESCRICAO: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 103.000000000000000000
+        Size.Width = 73.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'MODELO'
+        TabOrder = 11
+      end
+      object VALOR: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 262.000000000000000000
+        Position.Y = 190.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'VALOR'
+        TabOrder = 4
+      end
+      object OBSERVACAO: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 277.000000000000000000
+        Size.Width = 90.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'OBSERVACAO'
+        TabOrder = 3
+      end
+      object Label1: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 110.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'DESCRICAO'
+        TabOrder = 10
+      end
+      object cbxMarca: TComboBox
+        Position.X = 482.000000000000000000
+        Position.Y = 47.000000000000000000
+        Size.Width = 148.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 18
+      end
+      object cbxModelo: TComboBox
+        Position.X = 10.000000000000000000
+        Position.Y = 128.000000000000000000
+        TabOrder = 17
+      end
+      object cbxTipo: TComboBox
+        Position.X = 135.000000000000000000
+        Position.Y = 128.000000000000000000
+        TabOrder = 16
+      end
+      object cbxDepartamento: TComboBox
+        Position.X = 10.000000000000000000
+        Position.Y = 215.000000000000000000
+        Size.Width = 106.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 15
+      end
+      object DateEdit1: TDateEdit
+        Date = 45453.000000000000000000
+        Position.X = 135.000000000000000000
+        Position.Y = 215.000000000000000000
+        Size.Width = 114.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 19
+      end
+      object cBoxAtivo: TCheckBox
+        Position.X = 496.000000000000000000
+        Position.Y = 215.000000000000000000
+        Size.Width = 17.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 20
+      end
+      object Memo1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Position.X = 108.000000000000000000
+        Position.Y = 277.000000000000000000
+        Size.Width = 522.000000000000000000
+        Size.Height = 104.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 21
+        Viewport.Width = 518.000000000000000000
+        Viewport.Height = 100.000000000000000000
+      end
+    end
+  end
+end

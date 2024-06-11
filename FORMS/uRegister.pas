@@ -18,7 +18,7 @@ type
     btnDeleteRegister: TButton;
     btnCancelRegister: TButton;
     btnQuit: TButton;
-    toControle: TTabControl;
+    tcControle: TTabControl;
     tList: TTabItem;
     tAction: TTabItem;
     FDQueryRegister: TFDQuery;

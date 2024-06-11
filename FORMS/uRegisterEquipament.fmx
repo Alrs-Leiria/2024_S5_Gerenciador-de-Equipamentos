@@ -2,16 +2,19 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
   Caption = 'frmRegister1'
   DesignerMasterStyle = 0
   inherited toControle: TTabControl
+    TabIndex = 0
     Sizes = (
       640s
       389s
       640s
       389s)
     inherited tList: TTabItem
+      IsSelected = True
       ExplicitSize.cx = 68.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
     end
     inherited tAction: TTabItem
+      IsSelected = False
       ExplicitSize.cx = 47.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object edtCodigo: TEdit
@@ -33,18 +36,18 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
-      object edtSenha: TEdit
+      object edtSerie: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 13
+        TabOrder = 15
         Position.X = 262.000000000000000000
         Position.Y = 128.000000000000000000
-        Size.Width = 368.000000000000000000
+        Size.Width = 187.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
-      object edtTelefone: TEdit
+      object edtValor: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 14
+        TabOrder = 16
         Position.X = 262.000000000000000000
         Position.Y = 215.000000000000000000
         Size.Width = 175.000000000000000000
@@ -61,7 +64,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'CODIGO'
-        TabOrder = 12
+        TabOrder = 13
       end
       object MARCA: TLabel
         StyledSettings = [Family, FontColor]
@@ -73,7 +76,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'MARCA'
-        TabOrder = 9
+        TabOrder = 10
       end
       object SERIE: TLabel
         StyledSettings = [Family, FontColor]
@@ -85,7 +88,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'SERIE'
-        TabOrder = 7
+        TabOrder = 8
       end
       object DEPARTAMENTO: TLabel
         StyledSettings = [Family, FontColor]
@@ -133,7 +136,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'TIPO'
-        TabOrder = 8
+        TabOrder = 9
       end
       object DESCRICAO: TLabel
         StyledSettings = [Family, FontColor]
@@ -145,7 +148,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'MODELO'
-        TabOrder = 11
+        TabOrder = 12
       end
       object VALOR: TLabel
         StyledSettings = [Family, FontColor]
@@ -181,7 +184,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'DESCRICAO'
-        TabOrder = 10
+        TabOrder = 11
       end
       object cbxMarca: TComboBox
         Position.X = 482.000000000000000000
@@ -189,17 +192,17 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Width = 148.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 18
+        TabOrder = 20
       end
       object cbxModelo: TComboBox
         Position.X = 10.000000000000000000
         Position.Y = 128.000000000000000000
-        TabOrder = 17
+        TabOrder = 19
       end
       object cbxTipo: TComboBox
         Position.X = 135.000000000000000000
         Position.Y = 128.000000000000000000
-        TabOrder = 16
+        TabOrder = 18
       end
       object cbxDepartamento: TComboBox
         Position.X = 10.000000000000000000
@@ -207,16 +210,16 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Width = 106.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 15
+        TabOrder = 17
       end
-      object DateEdit1: TDateEdit
+      object dDataCadastro: TDateEdit
         Date = 45453.000000000000000000
         Position.X = 135.000000000000000000
         Position.Y = 215.000000000000000000
         Size.Width = 114.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 19
+        TabOrder = 21
       end
       object cBoxAtivo: TCheckBox
         Position.X = 496.000000000000000000
@@ -224,7 +227,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Width = 17.000000000000000000
         Size.Height = 19.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 20
+        TabOrder = 22
       end
       object Memo1: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -234,9 +237,30 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Width = 522.000000000000000000
         Size.Height = 104.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 21
-        Viewport.Width = 518.000000000000000000
-        Viewport.Height = 100.000000000000000000
+        TabOrder = 23
+        Viewport.Width = 522.000000000000000000
+        Viewport.Height = 104.000000000000000000
+      end
+      object PATRIMONIO: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 466.000000000000000000
+        Position.Y = 103.000000000000000000
+        Size.Width = 151.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'PATRIMONIO'
+        TabOrder = 7
+      end
+      object edtPatrimonio: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 14
+        Position.X = 466.000000000000000000
+        Position.Y = 128.000000000000000000
+        Size.Width = 164.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
       end
     end
   end

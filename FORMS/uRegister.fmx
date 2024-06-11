@@ -92,7 +92,7 @@ object frmRegister: TfrmRegister
       OnClick = btnQuitClick
     end
   end
-  object toControle: TTabControl
+  object tcControle: TTabControl
     Align = Top
     Size.Width = 640.000000000000000000
     Size.Height = 415.000000000000000000
