@@ -2,6 +2,7 @@ inherited frmRegisterUser: TfrmRegisterUser
   Caption = 'frmRegisterUser'
   DesignerMasterStyle = 0
   inherited tcControle: TTabControl
+    OnChange = tcControleChange
     Sizes = (
       640s
       389s
@@ -81,7 +82,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         Position.X = 9.000000000000000000
         Position.Y = 71.000000000000000000
         Enabled = False
-        Size.Width = 60.000000000000000000
+        Size.Width = 81.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
@@ -89,13 +90,13 @@ inherited frmRegisterUser: TfrmRegisterUser
         StyledSettings = [Family, FontColor]
         Position.X = 10.000000000000000000
         Position.Y = 46.000000000000000000
-        Size.Width = 47.000000000000000000
+        Size.Width = 71.000000000000000000
         Size.Height = 17.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'ID'
-        TabOrder = 9
+        TabOrder = 10
       end
       object Nome: TLabel
         StyledSettings = [Family, FontColor]
@@ -107,7 +108,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'NOME'
-        TabOrder = 8
+        TabOrder = 9
       end
       object edtNome: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -128,7 +129,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'E-MAIL'
-        TabOrder = 7
+        TabOrder = 8
       end
       object Label2: TLabel
         StyledSettings = [Family, FontColor]
@@ -140,7 +141,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'SENHA'
-        TabOrder = 5
+        TabOrder = 6
       end
       object Label3: TLabel
         StyledSettings = [Family, FontColor]
@@ -152,7 +153,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'TIPO'
-        TabOrder = 4
+        TabOrder = 5
       end
       object Label4: TLabel
         StyledSettings = [Family, FontColor]
@@ -180,7 +181,7 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
       object edtEmail: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 12
+        TabOrder = 13
         Position.X = 10.000000000000000000
         Position.Y = 158.000000000000000000
         Size.Width = 125.000000000000000000
@@ -189,7 +190,7 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
       object edtSenha: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 10
+        TabOrder = 11
         Position.X = 326.000000000000000000
         Position.Y = 158.000000000000000000
         Size.Width = 304.000000000000000000
@@ -200,7 +201,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         ItemIndex = 0
         Position.X = 10.000000000000000000
         Position.Y = 247.000000000000000000
-        TabOrder = 13
+        TabOrder = 15
         object ListBoxItem1: TListBoxItem
           IsSelected = True
           Size.Width = 19.000000000000000000
@@ -214,7 +215,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         Date = 45452.000000000000000000
         Position.X = 135.000000000000000000
         Position.Y = 247.000000000000000000
-        TabOrder = 14
+        TabOrder = 16
       end
       object checkAtivo: TCheckBox
         IsChecked = True
@@ -223,7 +224,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         Size.Width = 18.000000000000000000
         Size.Height = 19.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 15
+        TabOrder = 17
         ParentShowHint = False
         ShowHint = False
       end
@@ -237,16 +238,42 @@ inherited frmRegisterUser: TfrmRegisterUser
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         Text = 'TELEFONE'
-        TabOrder = 6
+        TabOrder = 7
       end
       object edtTelefone: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 11
+        TabOrder = 12
         Position.X = 143.000000000000000000
         Position.Y = 158.000000000000000000
         Size.Width = 175.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
+      end
+      object cbxDepartamento: TComboBox
+        ItemIndex = 0
+        Position.X = 386.000000000000000000
+        Position.Y = 247.000000000000000000
+        TabOrder = 14
+        object ListBoxItem2: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'ListBoxItem1'
+        end
+      end
+      object DEPARTAMENTO: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 386.000000000000000000
+        Position.Y = 222.000000000000000000
+        Size.Width = 119.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'DEPARTAMENTO'
+        TabOrder = 4
       end
     end
   end

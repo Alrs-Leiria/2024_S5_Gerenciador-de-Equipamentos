@@ -69,7 +69,7 @@ end;
 procedure TfrmRegister.btnDeleteRegisterClick(Sender: TObject);
 begin
   FDQueryRegister.Edit;
-  FDQueryRegister.FieldByName('DT_EXCLUIDO').AsDateTime := Date;
+  {FDQueryRegister.FieldByName('DT_EXCLUIDO').AsDateTime := Date;}
   {FDTransactionRegister.StartTransaction;}
   FDQueryRegister.Post;
   {FDTransactionRegister.CommitRetaining;}

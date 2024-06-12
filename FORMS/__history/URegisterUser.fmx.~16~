@@ -1,0 +1,282 @@
+inherited frmRegisterUser: TfrmRegisterUser
+  Caption = 'frmRegisterUser'
+  DesignerMasterStyle = 0
+  inherited tcControle: TTabControl
+    Sizes = (
+      640s
+      389s
+      640s
+      389s)
+    inherited tList: TTabItem
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object lvUsuarios: TListView
+        ItemAppearanceClassName = 'TDynamicAppearance'
+        ItemEditAppearanceClassName = 'TDynamicAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Position.X = 1.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 377.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'txtId'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 33.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = -2.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtNome'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 169.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 46.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtEmail'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 87.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 230.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtTelefone'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 71.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 334.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtGrupo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 65.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 422.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtDepartamento'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 97.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 502.000000000000000000
+          end>
+        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Text1'
+            AppearanceClassName = 'TTextObjectAppearance'
+          end>
+        OnItemClickEx = lvUsuariosItemClickEx
+      end
+    end
+    inherited tAction: TTabItem
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object edtId: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 1
+        Position.X = 9.000000000000000000
+        Position.Y = 71.000000000000000000
+        Enabled = False
+        Size.Width = 60.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ID: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 46.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'ID'
+        TabOrder = 10
+      end
+      object Nome: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 110.000000000000000000
+        Position.Y = 46.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'NOME'
+        TabOrder = 9
+      end
+      object edtNome: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        Position.X = 110.000000000000000000
+        Position.Y = 71.000000000000000000
+        Size.Width = 520.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Label1: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 133.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'E-MAIL'
+        TabOrder = 8
+      end
+      object Label2: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 326.000000000000000000
+        Position.Y = 133.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'SENHA'
+        TabOrder = 6
+      end
+      object Label3: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 222.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'TIPO'
+        TabOrder = 5
+      end
+      object Label4: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 287.000000000000000000
+        Position.Y = 222.000000000000000000
+        Size.Width = 47.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'ATIVO'
+        TabOrder = 3
+      end
+      object Label5: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 135.000000000000000000
+        Position.Y = 222.000000000000000000
+        Size.Width = 155.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'DATA CADASTRO'
+        TabOrder = 2
+      end
+      object edtEmail: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 13
+        Position.X = 10.000000000000000000
+        Position.Y = 158.000000000000000000
+        Size.Width = 125.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object edtSenha: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 11
+        Position.X = 326.000000000000000000
+        Position.Y = 158.000000000000000000
+        Size.Width = 304.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object cbGrupo: TComboBox
+        ItemIndex = 0
+        Position.X = 10.000000000000000000
+        Position.Y = 247.000000000000000000
+        TabOrder = 15
+        object ListBoxItem1: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'ListBoxItem1'
+        end
+      end
+      object dData: TDateEdit
+        Date = 45452.000000000000000000
+        Position.X = 135.000000000000000000
+        Position.Y = 247.000000000000000000
+        TabOrder = 16
+      end
+      object checkAtivo: TCheckBox
+        IsChecked = True
+        Position.X = 287.000000000000000000
+        Position.Y = 247.000000000000000000
+        Size.Width = 18.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 17
+        ParentShowHint = False
+        ShowHint = False
+      end
+      object Label6: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 143.000000000000000000
+        Position.Y = 133.000000000000000000
+        Size.Width = 66.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'TELEFONE'
+        TabOrder = 7
+      end
+      object edtTelefone: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 12
+        Position.X = 143.000000000000000000
+        Position.Y = 158.000000000000000000
+        Size.Width = 175.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object cbxDepartamento: TComboBox
+        ItemIndex = 0
+        Position.X = 386.000000000000000000
+        Position.Y = 247.000000000000000000
+        TabOrder = 14
+        object ListBoxItem2: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'ListBoxItem1'
+        end
+      end
+      object DEPARTAMENTO: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 386.000000000000000000
+        Position.Y = 222.000000000000000000
+        Size.Width = 119.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'DEPARTAMENTO'
+        TabOrder = 4
+      end
+    end
+  end
+  inherited FDQueryRegister: TFDQuery
+    Top = 336
+  end
+end

@@ -39,17 +39,30 @@ type
     Label6: TLabel;
     edtTelefone: TEdit;
     lvUsuarios: TListView;
+    cbxDepartamento: TComboBox;
+    ListBoxItem2: TListBoxItem;
+    DEPARTAMENTO: TLabel;
     procedure btnSaveRegisterClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lvUsuariosItemClickEx(const Sender: TObject; ItemIndex: Integer;
       const LocalClickPos: TPointF; const ItemObject: TListItemDrawable);
+    procedure tcControleChange(Sender: TObject);
+    procedure btnNewRegisterClick(Sender: TObject);
+    procedure btnDeleteRegisterClick(Sender: TObject);
   private
     { Private declarations }
-    function buscarUsuarioNoBanco( user : TUser) : TUser;
+    function  preencherObjetoUsario(usuario : TUser) : TUser;
+
+    function  buscarUsuarioNoBanco( user : TUser) : TUser;
     procedure inserirUsuarioNoBanco( usuario : TUser);
+    procedure editarUsuarioNoBanco( usuario : TUser);
+    procedure removerUsuarioNoBanco(id_user : Integer);
     procedure listarUsuario();
 
     procedure inserirUsuarionaLista( user : TUser);
+
+
+    var operacao : string;
   public
     { Public declarations }
   end;
@@ -61,22 +74,37 @@ implementation
 
 {$R *.fmx}
 
+procedure TfrmRegisterUser.btnDeleteRegisterClick(Sender: TObject);
+begin
+  inherited;
+  removerUsuarioNoBanco(StrToInt(edtId.Text));
+end;
+
+procedure TfrmRegisterUser.btnNewRegisterClick(Sender: TObject);
+begin
+  inherited;
+  operacao := 'inserir';
+  tcControle.TabIndex := 1;
+end;
+
 procedure TfrmRegisterUser.btnSaveRegisterClick(Sender: TObject);
 var vUsuario : TUser;
 begin
   inherited;
+  vUsuario := preencherObjetoUsario(vUsuario);
 
-  vUsuario.nome := edtNome.Text;
-  vUsuario.email := edtEmail.Text;
-  vUsuario.senha := edtSenha.Text;
-  vUsuario.telefone := edtTelefone.Text;
-  vUsuario.grupo := cbGrupo.ItemIndex;
-  vUsuario.data_cadastro := dData.Date;
-  vUsuario.data_excluido := dData.Date;
-  vUsuario.ativo := true;
-  vUsuario.email := edtEmail.Text;
+  if operacao = 'editar' then
+  begin
+    vUsuario.id := StrToInt(edtId.Text);
+    editarUsuarioNoBanco(vUsuario);
 
-  inserirUsuarioNoBanco(vUsuario);
+  end
+  else if operacao = 'inserir' then
+  begin
+    inserirUsuarioNoBanco(vUsuario);
+  end;
+
+
 end;
 
 function TfrmRegisterUser.buscarUsuarioNoBanco(user: TUser) : TUser;
@@ -101,6 +129,37 @@ begin
   Result := vUser;
 end;
 
+procedure TfrmRegisterUser.editarUsuarioNoBanco(usuario: TUser);
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('UPDATE usuario SET');
+  FDQueryRegister.SQL.Add('nome = :nome,');
+  FDQueryRegister.SQL.Add('email = :email,');
+  FDQueryRegister.SQL.Add('telefone = :telefone,');
+  FDQueryRegister.SQL.Add('senha = :senha,');
+  FDQueryRegister.SQL.Add('grupo = :grupo,');
+  FDQueryRegister.SQL.Add('data_cadastro = :data_cadastro,');
+  FDQueryRegister.SQL.Add('data_excluido = :data_excluido,');
+  FDQueryRegister.SQL.Add('ativo = :ativo,');
+  FDQueryRegister.SQL.Add('departamento = :departamento');
+  FDQueryRegister.SQL.Add('WHERE id = :id');
+
+  FDQueryRegister.ParamByName('id').AsInteger := usuario.id;
+  FDQueryRegister.ParamByName('grupo').AsInteger := 1;
+  FDQueryRegister.ParamByName('departamento').AsInteger := 1;
+  FDQueryRegister.ParamByName('nome').AsString := usuario.nome;
+  FDQueryRegister.ParamByName('email').AsString := usuario.email;
+  FDQueryRegister.ParamByName('telefone').AsString := usuario.telefone;
+  FDQueryRegister.ParamByName('senha').AsString := usuario.senha;
+  FDQueryRegister.ParamByName('data_cadastro').AsDate := usuario.data_cadastro;
+  FDQueryRegister.ParamByName('data_excluido').AsDate := usuario.data_excluido;
+  FDQueryRegister.ParamByName('ativo').AsBoolean := usuario.ativo;
+
+  FDQueryRegister.ExecSQL;
+end;
+
 procedure TfrmRegisterUser.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -122,21 +181,21 @@ end;
 
 procedure TfrmRegisterUser.inserirUsuarioNoBanco(usuario: TUser);
 begin
+
   FDQueryRegister.Close;
   FDQueryRegister.SQL.Clear;
-  FDQueryRegister.SQL.Add('INSERT INTO usuario(id, nome, email, telefone, senha, grupo, data_cadastro, data_excluido, ativo, departamento)');
-  FDQueryRegister.SQL.Add('VALUES (:id, :nome, :email, :telefone, :senha, :grupo, :data_cadastro, :data_excluido, :ativo, :departamento)');
+  FDQueryRegister.SQL.Add('INSERT INTO usuario(nome, email, telefone, senha, grupo, data_cadastro, data_excluido, ativo, departamento)');
+  FDQueryRegister.SQL.Add('VALUES (:nome, :email, :telefone, :senha, :grupo, :data_cadastro, :data_excluido, :ativo, :departamento)');
 
-  FDQueryRegister.ParamByName('id').AsInteger := usuario.id;
-  FDQueryRegister.ParamByName('grupo').AsInteger := 1;
-  FDQueryRegister.ParamByName('departamento').AsInteger := 1;
   FDQueryRegister.ParamByName('nome').AsString := usuario.nome;
   FDQueryRegister.ParamByName('email').AsString := usuario.email;
   FDQueryRegister.ParamByName('telefone').AsString := usuario.telefone;
   FDQueryRegister.ParamByName('senha').AsString := usuario.senha;
+  FDQueryRegister.ParamByName('grupo').AsInteger := 1;
+  FDQueryRegister.ParamByName('departamento').AsInteger := 1;
   FDQueryRegister.ParamByName('data_cadastro').AsDate := usuario.data_cadastro;
   FDQueryRegister.ParamByName('data_excluido').AsDate := usuario.data_excluido;
-  FDQueryRegister.ParamByName('ativo').AsBoolean := usuario.ativo;
+  FDQueryRegister.ParamByName('ativo').Asfloat := 1;
 
   FDQueryRegister.ExecSQL;
 end;
@@ -154,7 +213,7 @@ begin
 
   FDQueryRegister.First;
 
-  {lvUsuarios.Items.Clear;}
+  lvUsuarios.Items.Clear;
 
   while not FDQueryRegister.Eof do
   begin
@@ -194,9 +253,50 @@ begin
   cbGrupo.ItemIndex := vUser.grupo;
   dData.Date := vUser.data_cadastro;
   dData.Date := vUser.data_excluido;
-{  checkAtivo := True;}
+  {checkAtivo := True;}
+  operacao := 'editar';
   tcControle.TabIndex := 1;
 
+
+end;
+
+function TfrmRegisterUser.preencherObjetoUsario(usuario: TUser): TUser;
+begin
+
+  usuario.nome := edtNome.Text;
+  usuario.email := edtEmail.Text;
+  usuario.senha := edtSenha.Text;
+  usuario.telefone := edtTelefone.Text;
+  usuario.grupo := cbGrupo.ItemIndex;
+  usuario.data_cadastro := dData.Date;
+  usuario.data_excluido := dData.Date;
+  usuario.ativo := true;
+  usuario.departamento := cbxDepartamento.ItemIndex;
+
+  Result := usuario;
+end;
+
+procedure TfrmRegisterUser.removerUsuarioNoBanco(id_user: Integer);
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+  FDQueryRegister.SQL.Add('DELETE FROM usuario');
+  FDQueryRegister.SQL.Add('WHERE id = :id');
+
+  FDQueryRegister.ParamByName('id').AsInteger := id_user;
+
+  FDQueryRegister.ExecSQL;
+end;
+
+procedure TfrmRegisterUser.tcControleChange(Sender: TObject);
+begin
+  inherited;
+  if (tcControle.TabIndex = 1) and (operacao = '') then
+  begin
+    tcControle.TabIndex := 0;
+
+    ShowMessage('Selecione o usuario');
+  end;
 end;
 
 end.

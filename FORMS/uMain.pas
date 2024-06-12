@@ -36,6 +36,7 @@ end;
 
 procedure TfrmMain.UsuariosClick(Sender: TObject);
 begin
+  frmRegisterUser.tcControle.TabIndex := 0;
   frmRegisterUser.Show;
 end;
 
