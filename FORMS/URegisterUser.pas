@@ -84,6 +84,7 @@ type
 
     procedure cancelarOperacao();
 
+    function validarCampos() : Boolean;
     procedure verificarOperacao();
     procedure verificarPermissaoTroca();
     function ConfirmDialogSync(const AMessage: String) : Boolean;
@@ -182,16 +183,20 @@ begin
   inherited;
   vUsuario := preencherObjetoUsario(vUsuario);
 
-  if operacao = 'editar' then
+  if validarCampos() then
   begin
-    vUsuario.id := StrToInt(edtId.Text);
-    editarUsuarioNoBanco(vUsuario);
+    if operacao = 'editar' then
+    begin
+      vUsuario.id := StrToInt(edtId.Text);
+      editarUsuarioNoBanco(vUsuario);
 
-  end
-  else if operacao = 'inserir' then
-  begin
-    inserirUsuarioNoBanco(vUsuario);
+    end
+    else if operacao = 'inserir' then
+    begin
+      inserirUsuarioNoBanco(vUsuario);
+    end;
   end;
+
 end;
 
 function TfrmRegisterUser.buscarUsuarioNoBanco(user: TUser) : TUser;
@@ -263,6 +268,7 @@ begin
   FDQueryRegister.SQL.Add('INSERT INTO usuario(nome, email, telefone, senha, grupo, data_cadastro, data_excluido, ativo, departamento)');
   FDQueryRegister.SQL.Add('VALUES (:nome, :email, :telefone, :senha, :grupo, :data_cadastro, :data_excluido, :ativo, :departamento)');
 
+  user.id := -1;
   user := PreencherUsuarioParamFromQuery(user, FDQueryRegister);
 
   FDQueryRegister.ExecSQL;
@@ -380,6 +386,11 @@ end;
 function TfrmRegisterUser.PreencherUsuarioParamFromQuery(user: TUser;
   query: TFDQuery): TUser;
 begin
+  if user.id <> -1 then
+  begin
+    query.ParamByName('id').AsInteger := user.id;
+  end;
+
   query.ParamByName('nome').AsString := user.nome;
   query.ParamByName('email').AsString := user.email;
   query.ParamByName('telefone').AsString := user.telefone;
@@ -422,6 +433,28 @@ begin
   finally
     Event.Free;
   end;
+end;
+
+function TfrmRegisterUser.validarCampos() : Boolean;
+begin
+  if (edtNome.Text= '') or (edtEmail.Text= '') or (edtTelefone.Text= '') or (edtSenha.Text= '') then
+  begin
+    ShowMessage('Há campos pendentes de preenchimento!');
+    Result := False;
+  end
+  else if cbxDepartamento.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina o departamento do usuario!');
+    Result := False;
+  end else if cbGrupo.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina o grupo do usuario!');
+    Result := False;
+  end else
+  begin
+    Result := True;
+  end;
+
 end;
 
 procedure TfrmRegisterUser.verificarOperacao;

@@ -2,7 +2,6 @@ inherited frmRegisterUser: TfrmRegisterUser
   Caption = 'frmRegisterUser'
   DesignerMasterStyle = 0
   inherited tcControle: TTabControl
-    TabIndex = 0
     OnChange = tcControleChange
     Sizes = (
       640s
@@ -10,7 +9,6 @@ inherited frmRegisterUser: TfrmRegisterUser
       640s
       389s)
     inherited tList: TTabItem
-      IsSelected = True
       ExplicitSize.cx = 69.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object lvUsuarios: TListView
@@ -82,7 +80,6 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
     end
     inherited tAction: TTabItem
-      IsSelected = False
       ExplicitSize.cx = 69.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object edtId: TEdit
