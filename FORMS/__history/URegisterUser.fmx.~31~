@@ -2,6 +2,7 @@ inherited frmRegisterUser: TfrmRegisterUser
   Caption = 'frmRegisterUser'
   DesignerMasterStyle = 0
   inherited tcControle: TTabControl
+    TabIndex = 0
     OnChange = tcControleChange
     Sizes = (
       640s
@@ -9,6 +10,7 @@ inherited frmRegisterUser: TfrmRegisterUser
       640s
       389s)
     inherited tList: TTabItem
+      IsSelected = True
       ExplicitSize.cx = 69.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object lvUsuarios: TListView
@@ -16,7 +18,6 @@ inherited frmRegisterUser: TfrmRegisterUser
         ItemEditAppearanceClassName = 'TDynamicAppearance'
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
-        Position.X = 1.000000000000000000
         Position.Y = 8.000000000000000000
         Size.Width = 640.000000000000000000
         Size.Height = 377.000000000000000000
@@ -74,6 +75,7 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
     end
     inherited tAction: TTabItem
+      IsSelected = False
       ExplicitSize.cx = 69.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object edtId: TEdit
@@ -157,7 +159,7 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
       object Label4: TLabel
         StyledSettings = [Family, FontColor]
-        Position.X = 287.000000000000000000
+        Position.X = 479.000000000000000000
         Position.Y = 222.000000000000000000
         Size.Width = 47.000000000000000000
         Size.Height = 17.000000000000000000
@@ -171,7 +173,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         StyledSettings = [Family, FontColor]
         Position.X = 135.000000000000000000
         Position.Y = 222.000000000000000000
-        Size.Width = 155.000000000000000000
+        Size.Width = 114.000000000000000000
         Size.Height = 17.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 14.000000000000000000
@@ -198,28 +200,45 @@ inherited frmRegisterUser: TfrmRegisterUser
         Size.PlatformDefault = False
       end
       object cbGrupo: TComboBox
-        ItemIndex = 0
+        ItemIndex = 1
         Position.X = 10.000000000000000000
         Position.Y = 247.000000000000000000
         TabOrder = 15
-        object ListBoxItem1: TListBoxItem
-          IsSelected = True
+        object lbAdm: TListBoxItem
           Size.Width = 19.000000000000000000
           Size.Height = 19.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Text = 'ListBoxItem1'
+          Text = 'Adm'
+        end
+        object lbGerente: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Gerente'
+        end
+        object lbAnalista: TListBoxItem
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Analista'
         end
       end
       object dData: TDateEdit
         Date = 45452.000000000000000000
         Position.X = 135.000000000000000000
         Position.Y = 247.000000000000000000
+        Size.Width = 130.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 16
       end
       object checkAtivo: TCheckBox
         IsChecked = True
-        Position.X = 287.000000000000000000
+        Position.X = 492.000000000000000000
         Position.Y = 247.000000000000000000
         Size.Width = 18.000000000000000000
         Size.Height = 19.000000000000000000
@@ -251,21 +270,25 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
       object cbxDepartamento: TComboBox
         ItemIndex = 0
-        Position.X = 386.000000000000000000
+        Position.X = 310.000000000000000000
         Position.Y = 247.000000000000000000
         TabOrder = 14
-        object ListBoxItem2: TListBoxItem
+        object lbAlmoxarifado: TListBoxItem
           IsSelected = True
           Size.Width = 19.000000000000000000
           Size.Height = 19.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Text = 'ListBoxItem1'
+          Text = 'Almoxarifado'
+        end
+        object lbTi: TListBoxItem
+          TabOrder = 1
+          Text = 'TI'
         end
       end
       object DEPARTAMENTO: TLabel
         StyledSettings = [Family, FontColor]
-        Position.X = 386.000000000000000000
+        Position.X = 310.000000000000000000
         Position.Y = 222.000000000000000000
         Size.Width = 119.000000000000000000
         Size.Height = 17.000000000000000000

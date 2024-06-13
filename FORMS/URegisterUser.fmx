@@ -34,9 +34,9 @@ inherited frmRegisterUser: TfrmRegisterUser
           item
             AppearanceObjectName = 'txtNome'
             AppearanceClassName = 'TTextObjectAppearance'
-            Appearance.Width = 169.000000000000000000
+            Appearance.Width = 185.000000000000000000
             Appearance.Height = 44.000000000000000000
-            Appearance.PlaceOffset.X = 46.000000000000000000
+            Appearance.PlaceOffset.X = 38.000000000000000000
           end
           item
             AppearanceObjectName = 'txtEmail'
@@ -50,21 +50,28 @@ inherited frmRegisterUser: TfrmRegisterUser
             AppearanceClassName = 'TTextObjectAppearance'
             Appearance.Width = 71.000000000000000000
             Appearance.Height = 44.000000000000000000
-            Appearance.PlaceOffset.X = 334.000000000000000000
+            Appearance.PlaceOffset.X = 326.000000000000000000
           end
           item
             AppearanceObjectName = 'txtGrupo'
             AppearanceClassName = 'TTextObjectAppearance'
             Appearance.Width = 65.000000000000000000
             Appearance.Height = 44.000000000000000000
-            Appearance.PlaceOffset.X = 422.000000000000000000
+            Appearance.PlaceOffset.X = 406.000000000000000000
           end
           item
             AppearanceObjectName = 'txtDepartamento'
             AppearanceClassName = 'TTextObjectAppearance'
-            Appearance.Width = 97.000000000000000000
+            Appearance.Width = 73.000000000000000000
             Appearance.Height = 44.000000000000000000
-            Appearance.PlaceOffset.X = 502.000000000000000000
+            Appearance.PlaceOffset.X = 478.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtAtivo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 39.000000000000000000
+            Appearance.Height = -60.000000000000000000
+            Appearance.PlaceOffset.X = 560.000000000000000000
           end>
         ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
           item
@@ -200,10 +207,18 @@ inherited frmRegisterUser: TfrmRegisterUser
         Size.PlatformDefault = False
       end
       object cbGrupo: TComboBox
-        ItemIndex = 1
+        ItemIndex = 0
         Position.X = 10.000000000000000000
         Position.Y = 247.000000000000000000
         TabOrder = 15
+        object ListBoxGroupHeader1: TListBoxGroupHeader
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          Text = '--TIPO--'
+        end
         object lbAdm: TListBoxItem
           Size.Width = 19.000000000000000000
           Size.Height = 19.000000000000000000
@@ -212,7 +227,6 @@ inherited frmRegisterUser: TfrmRegisterUser
           Text = 'Adm'
         end
         object lbGerente: TListBoxItem
-          IsSelected = True
           Size.Width = 19.000000000000000000
           Size.Height = 19.000000000000000000
           Size.PlatformDefault = False
@@ -225,6 +239,10 @@ inherited frmRegisterUser: TfrmRegisterUser
           Size.PlatformDefault = False
           TabOrder = 2
           Text = 'Analista'
+        end
+        object ListBoxItem1: TListBoxItem
+          TabOrder = 3
+          Text = 'ListBoxItem1'
         end
       end
       object dData: TDateEdit
@@ -270,9 +288,19 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
       object cbxDepartamento: TComboBox
         ItemIndex = 0
-        Position.X = 310.000000000000000000
+        Position.X = 304.000000000000000000
         Position.Y = 247.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 14
+        object ListBoxGroupHeader2: TListBoxGroupHeader
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = '--DEPARTAMENTO--'
+        end
         object lbAlmoxarifado: TListBoxItem
           IsSelected = True
           Size.Width = 19.000000000000000000

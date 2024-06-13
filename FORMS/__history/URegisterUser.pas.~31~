@@ -47,6 +47,7 @@ type
     lbTi: TListBoxItem;
     ListBoxItem1: TListBoxItem;
     ListBoxGroupHeader1: TListBoxGroupHeader;
+    ListBoxGroupHeader2: TListBoxGroupHeader;
     procedure btnSaveRegisterClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lvUsuariosItemClickEx(const Sender: TObject; ItemIndex: Integer;
@@ -429,7 +430,7 @@ procedure TfrmRegisterUser.verificarPermissaoTroca;
 begin
     if (permitirTroca = False) and (tcControle.ActiveTab = tList) then
     begin
-      if ConfirmDialogSync('Deseja cancelar a ediÃ§Ã£o') then
+      if ConfirmDialogSync('Deseja cancelar a edição') then
       begin
         cancelarOperacao;
       end

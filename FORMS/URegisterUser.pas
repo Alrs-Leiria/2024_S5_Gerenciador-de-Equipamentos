@@ -45,6 +45,9 @@ type
     lbGerente: TListBoxItem;
     lbAnalista: TListBoxItem;
     lbTi: TListBoxItem;
+    ListBoxItem1: TListBoxItem;
+    ListBoxGroupHeader1: TListBoxGroupHeader;
+    ListBoxGroupHeader2: TListBoxGroupHeader;
     procedure btnSaveRegisterClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lvUsuariosItemClickEx(const Sender: TObject; ItemIndex: Integer;
@@ -55,13 +58,16 @@ type
     procedure btnCancelRegisterClick(Sender: TObject);
   private
     { Private declarations }
-    function  preencherObjetoUsario(usuario : TUser) : TUser;
+    function  preencherObjetoUsario(user : TUser) : TUser;
 
     function  buscarUsuarioNoBanco( user : TUser) : TUser;
-    procedure inserirUsuarioNoBanco( usuario : TUser);
-    procedure editarUsuarioNoBanco( usuario : TUser);
+    procedure inserirUsuarioNoBanco( user : TUser);
+    procedure editarUsuarioNoBanco( user : TUser);
     procedure removerUsuarioNoBanco(id_user : Integer);
     procedure listarUsuario();
+
+    function PreencherUsuarioFieldFromQuery(user : TUser; query : TFDQuery) : TUser;
+    function PreencherUsuarioParamFromQuery(user : TUser; query : TFDQuery) : TUser;
 
 
 
@@ -93,10 +99,18 @@ implementation
 
 {$R *.fmx}
 
+procedure TfrmRegisterUser.FormCreate(Sender: TObject);
+begin
+  inherited;
+  ajustarComponentes;
+  listarUsuario;
+  permitirTroca := True;
+end;
+
 procedure TfrmRegisterUser.tcControleChange(Sender: TObject);
 begin
   inherited;
- { ajustarComponentes;}
+  ajustarComponentes;
   verificarOperacao;
   verificarPermissaoTroca;
 
@@ -106,6 +120,13 @@ procedure TfrmRegisterUser.ajustarComponentes;
 begin
   if tcControle.ActiveTab = tList then
   begin
+    listarUsuario;
+    btnNewRegister.Visible := True;
+    btnNewRegister.Enabled := True;
+
+    btnQuit.Visible := True;
+    btnQuit.Enabled := True;
+
     btnSaveRegister.Visible := False;
     btnSaveRegister.Enabled := False;
 
@@ -128,6 +149,9 @@ begin
 
     btnNewRegister.Visible := False;
     btnNewRegister.Enabled := False;
+
+    btnQuit.Visible := False;
+    btnQuit.Enabled := False;
   end;
 
 end;
@@ -182,12 +206,7 @@ begin
 
   FDQueryRegister.Open();
 
-  vUser.id := FDQueryRegister.FieldByName('id').AsInteger;
-  vUser.nome := FDQueryRegister.FieldByName('nome').AsString;
-  vUser.email := FDQueryRegister.FieldByName('email').AsString;
-  vUser.telefone := FDQueryRegister.FieldByName('telefone').AsString;
-  vUser.grupo := FDQueryRegister.FieldByName('grupo').AsInteger;
-  vUser.departamento := FDQueryRegister.FieldByName('departamento').AsInteger;
+  vUser := PreencherUsuarioFieldFromQuery(vUser, FDQueryRegister);
 
   Result := vUser;
 end;
@@ -201,7 +220,7 @@ begin
 end;
 
 
-procedure TfrmRegisterUser.editarUsuarioNoBanco(usuario: TUser);
+procedure TfrmRegisterUser.editarUsuarioNoBanco(user: TUser);
 begin
   FDQueryRegister.Close;
   FDQueryRegister.SQL.Clear;
@@ -218,27 +237,9 @@ begin
   FDQueryRegister.SQL.Add('departamento = :departamento');
   FDQueryRegister.SQL.Add('WHERE id = :id');
 
-  FDQueryRegister.ParamByName('id').AsInteger := usuario.id;
-  FDQueryRegister.ParamByName('grupo').AsInteger := usuario.grupo;
-  FDQueryRegister.ParamByName('departamento').AsInteger := usuario.departamento;
-  FDQueryRegister.ParamByName('nome').AsString := usuario.nome;
-  FDQueryRegister.ParamByName('email').AsString := usuario.email;
-  FDQueryRegister.ParamByName('telefone').AsString := usuario.telefone;
-  FDQueryRegister.ParamByName('senha').AsString := usuario.senha;
-  FDQueryRegister.ParamByName('data_cadastro').AsDate := usuario.data_cadastro;
-  FDQueryRegister.ParamByName('data_excluido').AsDate := usuario.data_excluido;
-  FDQueryRegister.ParamByName('ativo').AsInteger := usuario.ativo;
+  user := PreencherUsuarioParamFromQuery(user, FDQueryRegister);
 
   FDQueryRegister.ExecSQL;
-end;
-
-procedure TfrmRegisterUser.FormCreate(Sender: TObject);
-begin
-  inherited;
-  ajustarComponentes;
-  listarUsuario;
-  preencherComboBoxGrupousuario;
-  permitirTroca := True;
 end;
 
 procedure TfrmRegisterUser.inserirUsuarionaLista(user: TUser);
@@ -254,7 +255,7 @@ begin
   end;
 end;
 
-procedure TfrmRegisterUser.inserirUsuarioNoBanco(usuario: TUser);
+procedure TfrmRegisterUser.inserirUsuarioNoBanco(user: TUser);
 begin
 
   FDQueryRegister.Close;
@@ -262,15 +263,7 @@ begin
   FDQueryRegister.SQL.Add('INSERT INTO usuario(nome, email, telefone, senha, grupo, data_cadastro, data_excluido, ativo, departamento)');
   FDQueryRegister.SQL.Add('VALUES (:nome, :email, :telefone, :senha, :grupo, :data_cadastro, :data_excluido, :ativo, :departamento)');
 
-  FDQueryRegister.ParamByName('nome').AsString := usuario.nome;
-  FDQueryRegister.ParamByName('email').AsString := usuario.email;
-  FDQueryRegister.ParamByName('telefone').AsString := usuario.telefone;
-  FDQueryRegister.ParamByName('senha').AsString := usuario.senha;
-  FDQueryRegister.ParamByName('grupo').AsInteger := 1;
-  FDQueryRegister.ParamByName('departamento').AsInteger := 1;
-  FDQueryRegister.ParamByName('data_cadastro').AsDate := usuario.data_cadastro;
-  FDQueryRegister.ParamByName('data_excluido').AsDate := usuario.data_excluido;
-  FDQueryRegister.ParamByName('ativo').Asfloat := 1;
+  user := PreencherUsuarioParamFromQuery(user, FDQueryRegister);
 
   FDQueryRegister.ExecSQL;
 end;
@@ -283,7 +276,7 @@ begin
   edtEmail.Text := '';
   edtSenha.Text := '';
   edtTelefone.Text := '';
-  cbGrupo.ItemIndex := 3;
+  cbGrupo.ItemIndex := 0;
 end;
 
 procedure TfrmRegisterUser.listarUsuario();
@@ -302,13 +295,7 @@ begin
 
   while not FDQueryRegister.Eof do
   begin
-    vUser.id := FDQueryRegister.FieldByName('id').AsInteger;
-    vUser.nome := FDQueryRegister.FieldByName('nome').AsString;
-    vUser.email := FDQueryRegister.FieldByName('email').AsString;
-    vUser.telefone := FDQueryRegister.FieldByName('telefone').AsString;
-    vUser.grupo := FDQueryRegister.FieldByName('grupo').AsInteger;
-    vUser.departamento := FDQueryRegister.FieldByName('departamento').AsInteger;
-    vUser.senha := FDQueryRegister.FieldByName('senha').AsString;
+    vUser := PreencherUsuarioFieldFromQuery(vUser, FDQueryRegister);
 
     inserirUsuarionaLista(vUser);
 
@@ -348,28 +335,60 @@ begin
 
 end;
 
-function TfrmRegisterUser.preencherObjetoUsario(usuario: TUser): TUser;
+function TfrmRegisterUser.preencherObjetoUsario(user: TUser): TUser;
 begin
 
-  usuario.nome := edtNome.Text;
-  usuario.email := edtEmail.Text;
-  usuario.senha := edtSenha.Text;
-  usuario.telefone := edtTelefone.Text;
-  usuario.data_cadastro := dData.Date;
-  usuario.data_excluido := dData.Date;
-  usuario.grupo := cbGrupo.ItemIndex;
-  usuario.departamento := cbxDepartamento.ItemIndex;
+  user.nome := edtNome.Text;
+  user.email := edtEmail.Text;
+  user.senha := edtSenha.Text;
+  user.telefone := edtTelefone.Text;
+  user.data_cadastro := dData.Date;
+  user.data_excluido := dData.Date;
+  user.grupo := cbGrupo.ItemIndex;
+  user.departamento := cbxDepartamento.ItemIndex;
 
   if checkAtivo.IsChecked = True then
   begin
-    usuario.ativo := 1;
+    user.ativo := 1;
   end
   else if checkAtivo.IsChecked = False then
   begin
-    usuario.ativo := 0;
+    user.ativo := 0;
   end;
 
-  Result := usuario;
+  Result := user;
+end;
+
+function TfrmRegisterUser.PreencherUsuarioFieldFromQuery(user: TUser;
+  query: TFDQuery): TUser;
+begin
+    user.id := query.FieldByName('id').AsInteger;
+    user.nome := query.FieldByName('nome').AsString;
+    user.email := query.FieldByName('email').AsString;
+    user.telefone := query.FieldByName('telefone').AsString;
+    user.senha := query.FieldByName('senha').AsString;
+    user.grupo := query.FieldByName('grupo').AsInteger;
+    user.departamento := query.FieldByName('departamento').AsInteger;
+    user.data_cadastro := query.FieldByName('data_cadastro').AsDateTime;
+    user.data_excluido := query.FieldByName('data_excluido').AsDateTime;
+    user.ativo := query.FieldByName('ativo').AsInteger;
+
+
+    Result := user;
+end;
+
+function TfrmRegisterUser.PreencherUsuarioParamFromQuery(user: TUser;
+  query: TFDQuery): TUser;
+begin
+  query.ParamByName('nome').AsString := user.nome;
+  query.ParamByName('email').AsString := user.email;
+  query.ParamByName('telefone').AsString := user.telefone;
+  query.ParamByName('senha').AsString := user.senha;
+  query.ParamByName('grupo').AsInteger := user.grupo;
+  query.ParamByName('departamento').AsInteger := user.departamento;
+  query.ParamByName('data_cadastro').AsDate := user.data_cadastro;
+  query.ParamByName('data_excluido').AsDate := user.data_excluido;
+  query.ParamByName('ativo').AsInteger := user.ativo;
 end;
 
 procedure TfrmRegisterUser.removerUsuarioNoBanco(id_user: Integer);

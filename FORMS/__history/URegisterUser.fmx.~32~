@@ -197,11 +197,12 @@ inherited frmRegisterUser: TfrmRegisterUser
         Size.PlatformDefault = False
       end
       object cbGrupo: TComboBox
-        ItemIndex = 3
+        ItemIndex = 0
         Position.X = 10.000000000000000000
         Position.Y = 247.000000000000000000
         TabOrder = 15
         object ListBoxGroupHeader1: TListBoxGroupHeader
+          IsSelected = True
           Size.Width = 19.000000000000000000
           Size.Height = 19.000000000000000000
           Size.PlatformDefault = False
@@ -223,7 +224,6 @@ inherited frmRegisterUser: TfrmRegisterUser
           Text = 'Gerente'
         end
         object lbAnalista: TListBoxItem
-          IsSelected = True
           Size.Width = 19.000000000000000000
           Size.Height = 19.000000000000000000
           Size.PlatformDefault = False
@@ -278,9 +278,19 @@ inherited frmRegisterUser: TfrmRegisterUser
       end
       object cbxDepartamento: TComboBox
         ItemIndex = 0
-        Position.X = 310.000000000000000000
+        Position.X = 304.000000000000000000
         Position.Y = 247.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 14
+        object ListBoxGroupHeader2: TListBoxGroupHeader
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = '--DEPARTAMENTO--'
+        end
         object lbAlmoxarifado: TListBoxItem
           IsSelected = True
           Size.Width = 19.000000000000000000
