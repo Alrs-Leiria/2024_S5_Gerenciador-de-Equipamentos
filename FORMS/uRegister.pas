@@ -32,6 +32,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+
   end;
 
 var
@@ -63,7 +64,7 @@ end;
 
 procedure TfrmRegister.FormCreate(Sender: TObject);
 begin
-  FDQueryRegister.Open()
+  FDQueryRegister.Open;
 end;
 
 procedure TfrmRegister.btnDeleteRegisterClick(Sender: TObject);
@@ -74,6 +75,7 @@ begin
   FDQueryRegister.Post;
   {FDTransactionRegister.CommitRetaining;}
 end;
+
 
 procedure TfrmRegister.btnCancelRegisterClick(Sender: TObject);
 begin

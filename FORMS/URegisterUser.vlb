@@ -10,9 +10,6 @@ Coordinates=525,188,114,58
 [Nome]
 Coordinates=649,188,48,58
 
-[ListBoxItem1]
-Coordinates=10,324,89,36
-
 [tAction]
 Coordinates=657,256,54,36
 
@@ -77,7 +74,7 @@ Coordinates=681,10,138,58
 Coordinates=193,256,83,58
 
 []
-Coordinates=10,10,107,168
+Coordinates=10,324,89,36
 Visible=True
 
 [tcControle]
