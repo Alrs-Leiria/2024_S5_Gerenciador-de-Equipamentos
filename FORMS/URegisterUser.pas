@@ -23,31 +23,32 @@ type
   TfrmRegisterUser = class(TfrmRegister)
     edtId: TEdit;
     ID: TLabel;
-    Nome: TLabel;
+    lNome: TLabel;
     edtNome: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+    lEmail: TLabel;
+    lSenha: TLabel;
+    lTipo: TLabel;
+    lAtivo: TLabel;
+    lDataCadastro: TLabel;
     edtEmail: TEdit;
     edtSenha: TEdit;
     cbGrupo: TComboBox;
     dData: TDateEdit;
     checkAtivo: TCheckBox;
-    Label6: TLabel;
+    lTelefone: TLabel;
     edtTelefone: TEdit;
     lvUsuarios: TListView;
     cbxDepartamento: TComboBox;
-    lbAlmoxarifado: TListBoxItem;
+    lbDAlmoxarifado: TListBoxItem;
     DEPARTAMENTO: TLabel;
     lbAdm: TListBoxItem;
     lbGerente: TListBoxItem;
     lbAnalista: TListBoxItem;
-    lbTi: TListBoxItem;
+    lbDTi: TListBoxItem;
     ListBoxItem1: TListBoxItem;
     ListBoxGroupHeader1: TListBoxGroupHeader;
     ListBoxGroupHeader2: TListBoxGroupHeader;
+    lbDAdm: TListBoxItem;
     procedure btnSaveRegisterClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lvUsuariosItemClickEx(const Sender: TObject; ItemIndex: Integer;
@@ -82,7 +83,7 @@ type
     procedure preencherComboBoxGrupousuario();
     procedure limparEdits();
 
-    procedure cancelarOperacao();
+    procedure finalizaAcao();
 
     function validarCampos() : Boolean;
     procedure verificarOperacao();
@@ -153,6 +154,22 @@ begin
 
     btnQuit.Visible := False;
     btnQuit.Enabled := False;
+
+    if operacao = 'inserir' then
+    begin
+      checkAtivo.Visible := False;
+      checkAtivo.Enabled := False;
+      lAtivo.Visible := False;
+      cbGrupo.ItemIndex := 0;
+      cbxDepartamento.ItemIndex := 0;
+    end else if operacao = 'editar' then
+    begin
+      checkAtivo.Visible := True;
+      checkAtivo.Enabled := True;
+      lAtivo.Visible := True;
+    end;
+
+
   end;
 
 end;
@@ -160,13 +177,15 @@ end;
 procedure TfrmRegisterUser.btnCancelRegisterClick(Sender: TObject);
 begin
   inherited;
-  cancelarOperacao;
+  finalizaAcao;
 end;
 
 procedure TfrmRegisterUser.btnDeleteRegisterClick(Sender: TObject);
 begin
   inherited;
   removerUsuarioNoBanco(StrToInt(edtId.Text));
+      showMessage('Usuario removido com sucesso!');
+      finalizaAcao;
 end;
 
 procedure TfrmRegisterUser.btnNewRegisterClick(Sender: TObject);
@@ -179,6 +198,7 @@ end;
 
 procedure TfrmRegisterUser.btnSaveRegisterClick(Sender: TObject);
 var vUsuario : TUser;
+    tempUser : TUser;
 begin
   inherited;
   vUsuario := preencherObjetoUsario(vUsuario);
@@ -188,12 +208,29 @@ begin
     if operacao = 'editar' then
     begin
       vUsuario.id := StrToInt(edtId.Text);
-      editarUsuarioNoBanco(vUsuario);
+      tempUser.id := StrToInt(edtId.Text);
 
+      tempuser := buscarUsuarioNoBanco(tempUser);
+      if (vUsuario.ativo = 0) and (tempUser.ativo = 1) then
+      begin
+        if ConfirmDialogSync('Deseja inativar o usuario') then
+        begin
+          vUsuario.data_excluido := Date;
+        end
+        else
+        begin
+          vUsuario.ativo := 1;
+        end;
+      end;
+      editarUsuarioNoBanco(vUsuario);
+      showMessage('Usuario atualizado com sucesso!');
+      finalizaAcao;
     end
     else if operacao = 'inserir' then
     begin
       inserirUsuarioNoBanco(vUsuario);
+      showMessage('Usuario cadastrado com sucesso!');
+      finalizaAcao;
     end;
   end;
 
@@ -216,7 +253,7 @@ begin
   Result := vUser;
 end;
 
-procedure TfrmRegisterUser.cancelarOperacao;
+procedure TfrmRegisterUser.finalizaAcao;
 begin
   limparEdits();
   operacao := '';
@@ -269,6 +306,7 @@ begin
   FDQueryRegister.SQL.Add('VALUES (:nome, :email, :telefone, :senha, :grupo, :data_cadastro, :data_excluido, :ativo, :departamento)');
 
   user.id := -1;
+  user.ativo := 1;
   user := PreencherUsuarioParamFromQuery(user, FDQueryRegister);
 
   FDQueryRegister.ExecSQL;
@@ -328,8 +366,16 @@ begin
   edtTelefone.Text := vUser.telefone;
   cbGrupo.ItemIndex := vUser.grupo;
   dData.Date := vUser.data_cadastro;
-  dData.Date := vUser.data_excluido;
-  {checkAtivo := True;}
+
+  if vUser.ativo = 1 then
+  begin
+    checkAtivo.IsChecked := True;
+  end
+  else if vUser.ativo = 0  then
+  begin
+    checkAtivo.IsChecked := False;
+  end;
+
   operacao := 'editar';
   tcControle.TabIndex := 1;
   permitirTroca := False;
@@ -349,9 +395,10 @@ begin
   user.senha := edtSenha.Text;
   user.telefone := edtTelefone.Text;
   user.data_cadastro := dData.Date;
-  user.data_excluido := dData.Date;
+  user.data_excluido := 0;
   user.grupo := cbGrupo.ItemIndex;
   user.departamento := cbxDepartamento.ItemIndex;
+
 
   if checkAtivo.IsChecked = True then
   begin
@@ -442,15 +489,16 @@ begin
     ShowMessage('Há campos pendentes de preenchimento!');
     Result := False;
   end
+  else if cbGrupo.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina o grupo do usuario!');
+    Result := False;
+  end
   else if cbxDepartamento.ItemIndex = 0 then
   begin
     ShowMessage('Defina o departamento do usuario!');
     Result := False;
-  end else if cbGrupo.ItemIndex = 0 then
-  begin
-    ShowMessage('Defina o grupo do usuario!');
-    Result := False;
-  end else
+  end  else
   begin
     Result := True;
   end;
@@ -474,9 +522,9 @@ begin
     begin
       if ConfirmDialogSync('Deseja cancelar a edição') then
       begin
-        cancelarOperacao;
+        finalizaAcao;
       end
-      else if True then
+      else
       begin
         tcControle.TabIndex := 1;
       end;
