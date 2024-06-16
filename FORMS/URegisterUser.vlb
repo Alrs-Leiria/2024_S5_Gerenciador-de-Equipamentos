@@ -31,9 +31,6 @@ Coordinates=286,256,77,58
 [btnNewRegister]
 Coordinates=86,188,106,58
 
-[cbGrupo]
-Coordinates=127,10,101,146
-
 [btnCancelRegister]
 Coordinates=373,256,121,58
 
@@ -79,4 +76,7 @@ Coordinates=489,10,53,58
 
 [lAtivo]
 Coordinates=552,10,53,58
+
+[cbxGrupo]
+Coordinates=127,10,101,146
 

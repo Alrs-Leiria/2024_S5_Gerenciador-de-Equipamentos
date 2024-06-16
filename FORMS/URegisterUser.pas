@@ -32,7 +32,7 @@ type
     lDataCadastro: TLabel;
     edtEmail: TEdit;
     edtSenha: TEdit;
-    cbGrupo: TComboBox;
+    cbxGrupo: TComboBox;
     dData: TDateEdit;
     checkAtivo: TCheckBox;
     lTelefone: TLabel;
@@ -57,9 +57,10 @@ type
     procedure btnNewRegisterClick(Sender: TObject);
     procedure btnDeleteRegisterClick(Sender: TObject);
     procedure btnCancelRegisterClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+
   private
     { Private declarations }
-    function  preencherObjetoUsario(user : TUser) : TUser;
 
     function  buscarUsuarioNoBanco( user : TUser) : TUser;
     procedure inserirUsuarioNoBanco( user : TUser);
@@ -67,20 +68,17 @@ type
     procedure removerUsuarioNoBanco(id_user : Integer);
     procedure listarUsuario();
 
+    function preencherObjetoUsario(user : TUser) : TUser;
     function PreencherUsuarioFieldFromQuery(user : TUser; query : TFDQuery) : TUser;
     function PreencherUsuarioParamFromQuery(user : TUser; query : TFDQuery) : TUser;
 
-
-
-
     procedure inserirUsuarionaLista( user : TUser);
-
 
     var operacao : string;
     var permitirTroca : Boolean;
+
   public
     { Public declarations }
-    procedure preencherComboBoxGrupousuario();
     procedure limparEdits();
 
     procedure finalizaAcao();
@@ -91,7 +89,6 @@ type
     function ConfirmDialogSync(const AMessage: String) : Boolean;
 
     procedure ajustarComponentes();
-
   end;
 
 var
@@ -100,6 +97,12 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmRegisterUser.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  finalizaAcao;
+end;
 
 procedure TfrmRegisterUser.FormCreate(Sender: TObject);
 begin
@@ -160,7 +163,7 @@ begin
       checkAtivo.Visible := False;
       checkAtivo.Enabled := False;
       lAtivo.Visible := False;
-      cbGrupo.ItemIndex := 0;
+      cbxGrupo.ItemIndex := 0;
       cbxDepartamento.ItemIndex := 0;
     end else if operacao = 'editar' then
     begin
@@ -184,8 +187,8 @@ procedure TfrmRegisterUser.btnDeleteRegisterClick(Sender: TObject);
 begin
   inherited;
   removerUsuarioNoBanco(StrToInt(edtId.Text));
-      showMessage('Usuario removido com sucesso!');
-      finalizaAcao;
+  showMessage('Usuario removido com sucesso!');
+  finalizaAcao;
 end;
 
 procedure TfrmRegisterUser.btnNewRegisterClick(Sender: TObject);
@@ -294,6 +297,16 @@ begin
     TListItemText(Objects.FindDrawable('txtTelefone')).Text := user.telefone;
     TListItemText(Objects.FindDrawable('txtGrupo')).Text := IntToStr(user.grupo);
     TListItemText(Objects.FindDrawable('txtDepartamento')).Text := IntToStr(user.departamento);
+
+    if user.ativo = 1 then
+    begin
+      TListItemText(Objects.FindDrawable('txtAtivo')).Text := 'Ativo';
+    end
+    else
+    begin
+      TListItemText(Objects.FindDrawable('txtAtivo')).Text := 'Inativo';
+    end;
+
   end;
 end;
 
@@ -320,7 +333,8 @@ begin
   edtEmail.Text := '';
   edtSenha.Text := '';
   edtTelefone.Text := '';
-  cbGrupo.ItemIndex := 0;
+  cbxGrupo.ItemIndex := 0;
+  cbxDepartamento.ItemIndex := 0;
 end;
 
 procedure TfrmRegisterUser.listarUsuario();
@@ -351,7 +365,6 @@ procedure TfrmRegisterUser.lvUsuariosItemClickEx(const Sender: TObject;
   ItemIndex: Integer; const LocalClickPos: TPointF;
   const ItemObject: TListItemDrawable);
 var vUser : TUser;
-    id_user : Integer;
 begin
   inherited;
 
@@ -364,7 +377,8 @@ begin
   edtEmail.Text := vUser.email;
   edtSenha.Text := vUser.senha;
   edtTelefone.Text := vUser.telefone;
-  cbGrupo.ItemIndex := vUser.grupo;
+  cbxGrupo.ItemIndex := vUser.grupo;
+  cbxDepartamento.ItemIndex := vUser.departamento;
   dData.Date := vUser.data_cadastro;
 
   if vUser.ativo = 1 then
@@ -381,12 +395,6 @@ begin
   permitirTroca := False;
 end;
 
-procedure TfrmRegisterUser.preencherComboBoxGrupousuario;
-begin
-
-
-end;
-
 function TfrmRegisterUser.preencherObjetoUsario(user: TUser): TUser;
 begin
 
@@ -396,9 +404,8 @@ begin
   user.telefone := edtTelefone.Text;
   user.data_cadastro := dData.Date;
   user.data_excluido := 0;
-  user.grupo := cbGrupo.ItemIndex;
+  user.grupo := cbxGrupo.ItemIndex;
   user.departamento := cbxDepartamento.ItemIndex;
-
 
   if checkAtivo.IsChecked = True then
   begin
@@ -425,7 +432,6 @@ begin
     user.data_cadastro := query.FieldByName('data_cadastro').AsDateTime;
     user.data_excluido := query.FieldByName('data_excluido').AsDateTime;
     user.ativo := query.FieldByName('ativo').AsInteger;
-
 
     Result := user;
 end;
@@ -489,7 +495,7 @@ begin
     ShowMessage('Há campos pendentes de preenchimento!');
     Result := False;
   end
-  else if cbGrupo.ItemIndex = 0 then
+  else if cbxGrupo.ItemIndex = 0 then
   begin
     ShowMessage('Defina o grupo do usuario!');
     Result := False;
@@ -506,7 +512,6 @@ begin
 end;
 
 procedure TfrmRegisterUser.verificarOperacao;
-
 begin
   if (tcControle.TabIndex = 1) and (operacao = '') then
   begin

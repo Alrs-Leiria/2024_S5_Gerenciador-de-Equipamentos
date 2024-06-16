@@ -1,8 +1,10 @@
 inherited frmRegisterEquipament: TfrmRegisterEquipament
-  Caption = 'frmRegister1'
+  Caption = 'Equipamentos'
+  OnClose = FormClose
   DesignerMasterStyle = 0
-  inherited toControle: TTabControl
+  inherited tcControle: TTabControl
     TabIndex = 0
+    OnChange = tcControleChange
     Sizes = (
       640s
       389s
@@ -12,6 +14,72 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       IsSelected = True
       ExplicitSize.cx = 68.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
+      object lvEquipamentos: TListView
+        ItemAppearanceClassName = 'TDynamicAppearance'
+        ItemEditAppearanceClassName = 'TDynamicAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Position.Y = 8.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 377.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'txtCodigo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 33.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = -2.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtDescricao'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 185.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 38.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtTipo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 87.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 230.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtPatrimonio'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 71.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 326.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtSerie'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 65.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 406.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtDepartamento'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 73.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 478.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtAtivo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 39.000000000000000000
+            Appearance.PlaceOffset.X = 560.000000000000000000
+          end>
+        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Text1'
+            AppearanceClassName = 'TTextObjectAppearance'
+          end>
+        OnItemClickEx = lvEquipamentosItemClickEx
+      end
     end
     inherited tAction: TTabItem
       IsSelected = False
@@ -38,7 +106,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       end
       object edtSerie: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 15
+        TabOrder = 16
         Position.X = 262.000000000000000000
         Position.Y = 128.000000000000000000
         Size.Width = 187.000000000000000000
@@ -47,7 +115,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       end
       object edtValor: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 16
+        TabOrder = 17
         Position.X = 262.000000000000000000
         Position.Y = 215.000000000000000000
         Size.Width = 175.000000000000000000
@@ -102,7 +170,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Text = 'DEPARTAMENTO'
         TabOrder = 6
       end
-      object Label4: TLabel
+      object lAtivo: TLabel
         StyledSettings = [Family, FontColor]
         Position.X = 482.000000000000000000
         Position.Y = 190.000000000000000000
@@ -193,24 +261,57 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 20
+        object lbHMarca: TListBoxGroupHeader
+          TabOrder = 2
+          Text = '--Marca--'
+        end
+        object lbDell: TListBoxItem
+          TabOrder = 0
+          Text = 'Dell'
+        end
+        object lbHp: TListBoxItem
+          TabOrder = 1
+          Text = 'Hp'
+        end
       end
       object cbxModelo: TComboBox
+        ItemIndex = 1
         Position.X = 10.000000000000000000
         Position.Y = 128.000000000000000000
         TabOrder = 19
+        object lbHModelo: TListBoxGroupHeader
+          TabOrder = 2
+          Text = '--Modelo--'
+        end
+        object lbModelo1: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Modelo 1'
+        end
+        object lbModelo2: TListBoxItem
+          TabOrder = 1
+          Text = 'Modelo 2'
+        end
       end
       object cbxTipo: TComboBox
         Position.X = 135.000000000000000000
         Position.Y = 128.000000000000000000
         TabOrder = 18
-      end
-      object cbxDepartamento: TComboBox
-        Position.X = 10.000000000000000000
-        Position.Y = 215.000000000000000000
-        Size.Width = 106.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 17
+        object lbHTipo: TListBoxGroupHeader
+          TabOrder = 2
+          Text = '--Tipo--'
+        end
+        object lbNotebook: TListBoxItem
+          TabOrder = 0
+          Text = 'Notebook'
+        end
+        object lbImpressora: TListBoxItem
+          TabOrder = 1
+          Text = 'Impressora'
+        end
       end
       object dDataCadastro: TDateEdit
         Date = 45453.000000000000000000
@@ -221,7 +322,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.PlatformDefault = False
         TabOrder = 21
       end
-      object cBoxAtivo: TCheckBox
+      object checkAtivo: TCheckBox
         Position.X = 496.000000000000000000
         Position.Y = 215.000000000000000000
         Size.Width = 17.000000000000000000
@@ -255,13 +356,55 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       end
       object edtPatrimonio: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 14
+        TabOrder = 15
         Position.X = 466.000000000000000000
         Position.Y = 128.000000000000000000
         Size.Width = 164.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
+      object cbxDepartamento: TComboBox
+        ItemIndex = 2
+        Position.X = 10.000000000000000000
+        Position.Y = 215.000000000000000000
+        Size.Width = 106.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 14
+        object ListBoxGroupHeader2: TListBoxGroupHeader
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = '--DEPARTAMENTO--'
+        end
+        object lbDAdm: TListBoxItem
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'Adm'
+        end
+        object lbDTi: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'TI'
+        end
+        object lbDAlmoxarifado: TListBoxItem
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Almoxarifado'
+        end
+      end
     end
+  end
+  inherited FDQueryRegister: TFDQuery
+    Left = 600
+    Top = 264
   end
 end

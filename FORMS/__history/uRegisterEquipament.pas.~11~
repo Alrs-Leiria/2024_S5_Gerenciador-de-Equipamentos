@@ -1,0 +1,378 @@
+unit uRegisterEquipament;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  uRegister, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet, FMX.Controls.Presentation, FMX.Menus, FMX.TabControl,
+  FMX.Edit, FMX.DateTimeCtrls, FMX.ListBox, FMX.ListView.Types,
+  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView, FMX.DialogService.Async,
+  System.SyncObjs, FMX.DialogService, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo;
+
+type
+  TEquipament = record
+    codigo, patrimonio, tipo, departamento, ativo : Integer;
+    descricao, marca, modelo, serie, observacao : string;
+    data_cadastro, data_excluido : TDate;
+    valor : Double;
+  end;
+  TfrmRegisterEquipament = class(TfrmRegister)
+    edtCodigo: TEdit;
+    edtDescricao: TEdit;
+    edtSerie: TEdit;
+    edtValor: TEdit;
+    CODIGO: TLabel;
+    MARCA: TLabel;
+    SERIE: TLabel;
+    DEPARTAMENTO: TLabel;
+    lAtivo: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    DESCRICAO: TLabel;
+    VALOR: TLabel;
+    OBSERVACAO: TLabel;
+    Label1: TLabel;
+    cbxMarca: TComboBox;
+    cbxModelo: TComboBox;
+    cbxTipo: TComboBox;
+    cbxDepartamento: TComboBox;
+    dDataCadastro: TDateEdit;
+    checkAtivo: TCheckBox;
+    Memo1: TMemo;
+    PATRIMONIO: TLabel;
+    edtPatrimonio: TEdit;
+    lvUsuarios: TListView;
+    lbDell: TListBoxItem;
+    lbHp: TListBoxItem;
+    ListBoxGroupHeader1: TListBoxGroupHeader;
+    lbModelo1: TListBoxItem;
+    lbModelo2: TListBoxItem;
+    ListBoxGroupHeader2: TListBoxGroupHeader;
+    lbNotebook: TListBoxItem;
+    lbImpressora: TListBoxItem;
+    ListBoxGroupHeader3: TListBoxGroupHeader;
+    procedure btnSaveRegisterClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure tcControleChange(Sender: TObject);
+  private
+    { Private declarations }
+    procedure inserirEquipamentNoBanco(equipament : TEquipament);
+
+    function preencherObjetoEquipamento(equip : TEquipament) : TEquipament;
+    function preencherEquipamentoFieldFromQuery(equip : TEquipament; query : TFDQuery) : TEquipament;
+    function preencherEquipamentoParamFromQuery(equip : TEquipament; query : TFDQuery) : TEquipament;
+
+    procedure inserirEquipamentoNaLista( equip : TEquipament);
+    var operacao : string;
+    var permitirTroca : Boolean;
+  public
+    { Public declarations }
+    procedure limparEdits();
+
+    procedure finalizaAcao();
+
+    function validarCampos() : Boolean;
+    procedure verificarOperacao();
+    procedure verificarPermissaoTroca();
+    function ConfirmDialogSync(const AMessage: String) : Boolean;
+    procedure ajustarComponentes;
+  end;
+
+var
+  frmRegisterEquipament: TfrmRegisterEquipament;
+
+implementation
+
+{$R *.fmx}
+procedure TfrmRegisterEquipament.ajustarComponentes;
+begin
+  if tcControle.ActiveTab = tList then
+  begin
+    btnNewRegister.Visible := True;
+    btnNewRegister.Enabled := True;
+
+    btnQuit.Visible := True;
+    btnQuit.Enabled := True;
+
+    btnSaveRegister.Visible := False;
+    btnSaveRegister.Enabled := False;
+
+    btnCancelRegister.Visible := False;
+    btnCancelRegister.Enabled := False;
+
+    btnDeleteRegister.Visible := False;
+    btnDeleteRegister.Enabled := False;
+  end
+  else if tcControle.ActiveTab = tAction then
+  begin
+    btnSaveRegister.Visible := True;
+    btnSaveRegister.Enabled := True;
+
+    btnCancelRegister.Visible := True;
+    btnCancelRegister.Enabled := True;
+
+    btnDeleteRegister.Visible := True;
+    btnDeleteRegister.Enabled := True;
+
+    btnNewRegister.Visible := False;
+    btnNewRegister.Enabled := False;
+
+    btnQuit.Visible := False;
+    btnQuit.Enabled := False;
+
+    if operacao = 'inserir' then
+    begin
+      checkAtivo.Visible := False;
+      checkAtivo.Enabled := False;
+      lAtivo.Visible := False;
+      cbxDepartamento.ItemIndex := 0;
+    end else if operacao = 'editar' then
+    begin
+      checkAtivo.Visible := True;
+      checkAtivo.Enabled := True;
+      lAtivo.Visible := True;
+    end;
+  end;
+end;
+
+procedure TfrmRegisterEquipament.btnSaveRegisterClick(Sender: TObject);
+var vEquipament : TEquipament;
+begin
+  inherited;
+
+  {vEquipament.codigo := StrToInt(edtCodigo.Text);}
+  vEquipament.descricao := edtDescricao.Text;
+  vEquipament.marca := 'Marca';
+  vEquipament.modelo := 'Modelo';
+  vEquipament.patrimonio := 10;
+  vEquipament.tipo := 1;
+  vEquipament.serie := edtSerie.Text;
+  vEquipament.departamento := 1;
+  vEquipament.valor := StrToFloat(edtValor.Text);
+  vEquipament.ativo := 1;
+  vEquipament.observacao := Memo1.Text;
+  vEquipament.data_cadastro := dDataCadastro.Date;
+  vEquipament.data_excluido := dDataCadastro.Date;
+
+  inserirEquipamentNoBanco(vEquipament);
+end;
+
+function TfrmRegisterEquipament.ConfirmDialogSync(
+  const AMessage: String): Boolean;
+var Event : TEvent;
+var ResultValue : Boolean;
+begin
+  Event := TEvent.Create;
+  try
+    TDialogService.MessageDialog(AMessage, TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK, TMsgDlgBtn.mbCancel], TMsgDlgBtn.mbOK, 0,
+      procedure(const AResult: TModalResult)
+    begin
+    ResultValue := AResult = mrOk;
+    Event.SetEvent;
+    end);
+    Event.WaitFor(INFINITE);
+    Result := ResultValue;
+  finally
+    Event.Free;
+  end;
+
+end;
+
+procedure TfrmRegisterEquipament.finalizaAcao;
+begin
+  limparEdits();
+  operacao := '';
+  permitirTroca := True;
+  tcControle.TabIndex := 0;
+end;
+
+procedure TfrmRegisterEquipament.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  finalizaAcao;
+end;
+
+procedure TfrmRegisterEquipament.FormCreate(Sender: TObject);
+begin
+  inherited;
+  ajustarComponentes;
+  permitirTroca := True;
+end;
+
+procedure TfrmRegisterEquipament.inserirEquipamentNoBanco(
+  equipament: TEquipament);
+begin
+
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('INSERT INTO equipamentos');
+  FDQueryRegister.SQL.Add('(descricao, marca, modelo, patrimonio, tipo_equipamento, serie, departamento, valor, observacao, data_cadastro, data_excluido, ativo)');
+  FDQueryRegister.SQL.Add('VALUES(:descricao, :marca, :modelo, :patrimonio, :tipo_equipamento, :serie, :departamento, :valor, :observacao, :data_cadastro, :data_excluido, :ativo)');
+
+  equipament.codigo := -1;
+  equipament.ativo := 1;
+  preencherEquipamentoParamFromQuery(equipament, FDQueryRegister);
+
+  FDQueryRegister.ExecSQL;
+end;
+
+procedure TfrmRegisterEquipament.inserirEquipamentoNaLista(equip: TEquipament);
+begin
+
+end;
+
+procedure TfrmRegisterEquipament.limparEdits;
+begin
+  edtCodigo.Text := '';
+  edtDescricao.Text := '';
+  edtSerie.Text := '';
+  edtPatrimonio.Text := '';
+  edtValor.Text:= '';
+  cbxMarca.ItemIndex := 0;
+  cbxModelo.ItemIndex := 0;
+  cbxTipo.ItemIndex := 0;
+  cbxDepartamento.ItemIndex := 0;
+  Memo1.Text := '';
+end;
+
+function TfrmRegisterEquipament.preencherEquipamentoFieldFromQuery(
+  equip: TEquipament; query: TFDQuery): TEquipament;
+begin
+
+end;
+
+function TfrmRegisterEquipament.preencherEquipamentoParamFromQuery(
+  equip: TEquipament; query: TFDQuery): TEquipament;
+begin
+  if equip.codigo <> -1 then
+  begin
+    query.ParamByName('codigo').AsInteger := equip.codigo;
+  end;
+  query.ParamByName('descricao').AsString := equip.descricao;
+  query.ParamByName('marca').AsString := equip.marca;
+  query.ParamByName('modelo').AsString := equip.modelo;
+  query.ParamByName('patrimonio').AsInteger := equip.patrimonio;
+  query.ParamByName('tipo_equipamento').AsInteger := equip.tipo;
+  query.ParamByName('serie').AsString := equip.serie;
+  query.ParamByName('departamento').AsInteger := equip.departamento;
+  query.ParamByName('valor').AsFloat := equip.valor;
+  query.ParamByName('observacao').AsString := equip.observacao;
+  query.ParamByName('data_cadastro').AsDate := equip.data_cadastro;
+  query.ParamByName('data_excluido').AsDate := equip.data_excluido;
+  query.ParamByName('ativo').AsInteger := equip.ativo;
+
+  Result := equip;
+end;
+
+function TfrmRegisterEquipament.preencherObjetoEquipamento(
+  equip: TEquipament): TEquipament;
+begin
+  equip.descricao := edtDescricao.Text;
+  equip.serie := edtSerie.Text;
+  equip.patrimonio := StrToInt(edtPatrimonio.Text);
+  equip.valor := StrToFloat(edtValor.Text);
+  equip.observacao := Memo1.Text;
+
+  if cbxMarca.ItemIndex = 1 then
+  begin
+    equip.marca := 'Dell';
+  end
+  else if cbxMarca.ItemIndex = 2 then
+  begin
+    equip.marca := 'Hp';
+  end;
+
+  if cbxModelo.ItemIndex := 1 then
+  begin
+    equip.modelo := 'Modelo 1';
+  end
+  else if cbxModelo.ItemIndex := 2 then
+  begin
+    equip.modelo := 'Modelo 2';
+  end;
+
+
+
+  equip.tipo := 1;
+
+  equip.departamento := 1;
+
+  equip.ativo := 1;
+
+  equip.data_cadastro := dDataCadastro.Date;
+  equip.data_excluido := dDataCadastro.Date;
+end;
+
+procedure TfrmRegisterEquipament.tcControleChange(Sender: TObject);
+begin
+  inherited;
+  ajustarComponentes;
+  verificarOperacao;
+  verificarPermissaoTroca;
+end;
+
+function TfrmRegisterEquipament.validarCampos: Boolean;
+begin
+  if (edtDescricao.Text= '') or (edtSerie.Text= '') or (edtPatrimonio.Text= '') or (edtValor.Text= '') then
+  begin
+    ShowMessage('Há campos pendentes de preenchimento!');
+    Result := False;
+  end
+  else if cbxMarca.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina a marca do equipamento!');
+    Result := False;
+  end
+  else if cbxModelo.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina o modelo do equipamento!');
+    Result := False;
+  end
+  else if cbxTipo.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina o tipo do equipamento!');
+    Result := False;
+  end
+  else if cbxDepartamento.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina o departamento do equipamento!');
+    Result := False;
+  end else
+  begin
+    Result := True;
+  end;
+end;
+
+procedure TfrmRegisterEquipament.verificarOperacao;
+begin
+  if (tcControle.TabIndex = 1) and (operacao = '') then
+  begin
+    tcControle.TabIndex := 0;
+
+    ShowMessage('Selecione o equipmento');
+  end
+end;
+
+procedure TfrmRegisterEquipament.verificarPermissaoTroca;
+begin
+    if (permitirTroca = False) and (tcControle.ActiveTab = tList) then
+    begin
+      if ConfirmDialogSync('Deseja cancelar a edição') then
+      begin
+        finalizaAcao;
+      end
+      else
+      begin
+        tcControle.TabIndex := 1;
+      end;
+    end;
+end;
+
+end.

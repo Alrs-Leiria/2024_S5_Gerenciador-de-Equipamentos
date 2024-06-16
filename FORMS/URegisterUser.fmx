@@ -1,5 +1,6 @@
 inherited frmRegisterUser: TfrmRegisterUser
-  Caption = 'frmRegisterUser'
+  Caption = 'Usuarios'
+  OnClose = FormClose
   DesignerMasterStyle = 0
   inherited tcControle: TTabControl
     OnChange = tcControleChange
@@ -203,7 +204,7 @@ inherited frmRegisterUser: TfrmRegisterUser
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
-      object cbGrupo: TComboBox
+      object cbxGrupo: TComboBox
         ItemIndex = 3
         Position.X = 10.000000000000000000
         Position.Y = 247.000000000000000000
