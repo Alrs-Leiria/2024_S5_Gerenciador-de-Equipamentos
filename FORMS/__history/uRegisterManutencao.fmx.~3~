@@ -1,0 +1,22 @@
+inherited frmRegisterManutencao: TfrmRegisterManutencao
+  Caption = 'frmRegisterManutencao'
+  DesignerMasterStyle = 0
+  inherited tcControle: TTabControl
+    TabIndex = 1
+    Sizes = (
+      640s
+      389s
+      640s
+      389s)
+    inherited tList: TTabItem
+      IsSelected = False
+      ExplicitSize.cx = 68.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+    inherited tAction: TTabItem
+      IsSelected = True
+      ExplicitSize.cx = 47.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+  end
+end

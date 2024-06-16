@@ -226,7 +226,11 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="..\FORMS\uRegisterManutencao.pas">
-            <Form>frmRegister1</Form>
+            <Form>frmRegisterManutencao</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\uRegisterLiberacao.pas">
+            <Form>frmRegisterLiberacao</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

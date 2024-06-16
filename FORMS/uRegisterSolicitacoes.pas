@@ -135,6 +135,15 @@ begin
   end;
 end;
 
+procedure TfrmRegisterSolicitacoes.limparEdits;
+begin
+  edtCodigo.Text := '';
+  edtAssunto.Text := '';
+  mDetalhamento.Text := '';
+  cbxTipo.ItemIndex := 0;
+end;
+
+
 procedure TfrmRegisterSolicitacoes.finalizaAcao;
 begin
   limparEdits();
@@ -142,6 +151,70 @@ begin
   permitirTroca := True;
   tcControle.TabIndex := 0;
 end;
+
+function TfrmRegisterSolicitacoes.validarCampos: Boolean;
+begin
+  if (edtAssunto.Text= '') or (mDetalhamento.Text= '') then
+  begin
+    ShowMessage('Há campos pendentes de preenchimento!');
+    Result := False;
+  end
+  else if cbxTipo.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina o tipo da solicitacao!');
+    Result := False;
+  end
+  else
+  begin
+    Result := True;
+  end;
+end;
+
+procedure TfrmRegisterSolicitacoes.verificarOperacao;
+begin
+  if (tcControle.TabIndex = 1) and (operacao = '') then
+  begin
+    tcControle.TabIndex := 0;
+
+    ShowMessage('Selecione a solicitacao');
+  end
+end;
+
+procedure TfrmRegisterSolicitacoes.verificarPermissaoTroca;
+begin
+    if (permitirTroca = False) and (tcControle.ActiveTab = tList) then
+    begin
+      if ConfirmDialogSync('Deseja cancelar a edição') then
+      begin
+        finalizaAcao;
+      end
+      else
+      begin
+        tcControle.TabIndex := 1;
+      end;
+    end;
+end;
+
+function TfrmRegisterSolicitacoes.ConfirmDialogSync(
+  const AMessage: String): Boolean;
+var Event : TEvent;
+var ResultValue : Boolean;
+begin
+  Event := TEvent.Create;
+  try
+    TDialogService.MessageDialog(AMessage, TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK, TMsgDlgBtn.mbCancel], TMsgDlgBtn.mbOK, 0,
+      procedure(const AResult: TModalResult)
+    begin
+    ResultValue := AResult = mrOk;
+    Event.SetEvent;
+    end);
+    Event.WaitFor(INFINITE);
+    Result := ResultValue;
+  finally
+    Event.Free;
+  end;
+end;
+
 procedure TfrmRegisterSolicitacoes.atualizarNoBanco(solicitacao: TSolicitacao);
 begin
   FDQueryRegister.Close;
@@ -257,14 +330,6 @@ begin
   FDQueryRegister.ExecSQL;
 end;
 
-procedure TfrmRegisterSolicitacoes.limparEdits;
-begin
-  edtCodigo.Text := '';
-  edtAssunto.Text := '';
-  mDetalhamento.Text := '';
-  cbxTipo.ItemIndex := 0;
-end;
-
 procedure TfrmRegisterSolicitacoes.listarDoBanco;
 var vSolicitacao : TSolicitacao;
 begin
@@ -359,69 +424,6 @@ begin
   ajustarComponentes;
   verificarOperacao;
   verificarPermissaoTroca;
-end;
-
-function TfrmRegisterSolicitacoes.validarCampos: Boolean;
-begin
-  if (edtAssunto.Text= '') or (mDetalhamento.Text= '') then
-  begin
-    ShowMessage('Há campos pendentes de preenchimento!');
-    Result := False;
-  end
-  else if cbxTipo.ItemIndex = 0 then
-  begin
-    ShowMessage('Defina o tipo da solicitacao!');
-    Result := False;
-  end
-  else
-  begin
-    Result := True;
-  end;
-end;
-
-procedure TfrmRegisterSolicitacoes.verificarOperacao;
-begin
-  if (tcControle.TabIndex = 1) and (operacao = '') then
-  begin
-    tcControle.TabIndex := 0;
-
-    ShowMessage('Selecione a solicitacao');
-  end
-end;
-
-procedure TfrmRegisterSolicitacoes.verificarPermissaoTroca;
-begin
-    if (permitirTroca = False) and (tcControle.ActiveTab = tList) then
-    begin
-      if ConfirmDialogSync('Deseja cancelar a edição') then
-      begin
-        finalizaAcao;
-      end
-      else
-      begin
-        tcControle.TabIndex := 1;
-      end;
-    end;
-end;
-
-function TfrmRegisterSolicitacoes.ConfirmDialogSync(
-  const AMessage: String): Boolean;
-var Event : TEvent;
-var ResultValue : Boolean;
-begin
-  Event := TEvent.Create;
-  try
-    TDialogService.MessageDialog(AMessage, TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK, TMsgDlgBtn.mbCancel], TMsgDlgBtn.mbOK, 0,
-      procedure(const AResult: TModalResult)
-    begin
-    ResultValue := AResult = mrOk;
-    Event.SetEvent;
-    end);
-    Event.WaitFor(INFINITE);
-    Result := ResultValue;
-  finally
-    Event.Free;
-  end;
 end;
 
 end.
