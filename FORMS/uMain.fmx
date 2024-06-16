@@ -1,4 +1,4 @@
-﻿object frmMain: TfrmMain
+object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'Form1'
@@ -26,10 +26,10 @@
     end
     object Operacional: TMenuItem
       Text = 'Operacional'
-      object Solicitações: TMenuItem
+      object Solicitacoes: TMenuItem
         Locked = True
-        Text = 'Solicita'#231#245'es'
-        OnClick = SolicitaçõesClick
+        Text = 'Solicitacoes'
+        OnClick = SolicitacoesClick
       end
     end
   end

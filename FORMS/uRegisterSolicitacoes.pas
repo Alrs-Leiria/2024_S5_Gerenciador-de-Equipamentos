@@ -42,6 +42,7 @@ type
     lbEmprestimo: TListBoxItem;
     lbManutencao: TListBoxItem;
     edtCodigo: TEdit;
+    lSolicitacao: TLabel;
     procedure btnSaveRegisterClick(Sender: TObject);
     procedure lvSolicitacoesItemClickEx(const Sender: TObject;
       ItemIndex: Integer; const LocalClickPos: TPointF;
@@ -93,9 +94,37 @@ begin
   if tcControle.ActiveTab = tList then
   begin
     listarDoBanco;
+    btnNewRegister.Visible := True;
+    btnNewRegister.Enabled := True;
+
+    btnQuit.Visible := True;
+    btnQuit.Enabled := True;
+
+    btnSaveRegister.Visible := False;
+    btnSaveRegister.Enabled := False;
+
+    btnCancelRegister.Visible := False;
+    btnCancelRegister.Enabled := False;
+
+    btnDeleteRegister.Visible := False;
+    btnDeleteRegister.Enabled := False;
   end
   else if tcControle.ActiveTab = tAction then
   begin
+    btnSaveRegister.Visible := True;
+    btnSaveRegister.Enabled := True;
+
+    btnCancelRegister.Visible := True;
+    btnCancelRegister.Enabled := True;
+
+    btnDeleteRegister.Visible := True;
+    btnDeleteRegister.Enabled := True;
+
+    btnNewRegister.Visible := False;
+    btnNewRegister.Enabled := False;
+
+    btnQuit.Visible := False;
+    btnQuit.Enabled := False;
     if operacao = 'inserir' then
     begin
       cbxTipo.ItemIndex := 0;
@@ -197,6 +226,8 @@ procedure TfrmRegisterSolicitacoes.FormCreate(Sender: TObject);
 begin
   inherited;
   ajustarComponentes;
+  listarDoBanco;
+  permitirTroca := True;
 end;
 
 procedure TfrmRegisterSolicitacoes.inserirNaLista(solicitacao: TSolicitacao);

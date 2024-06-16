@@ -11,7 +11,8 @@ uses
   URegisterUser in '..\FORMS\URegisterUser.pas' {frmRegisterUser},
   uRegisterEquipament in '..\FORMS\uRegisterEquipament.pas' {frmRegisterEquipament},
   uRegisterSolicitacao in '..\FORMS\uRegisterSolicitacao.pas' {frmRegisterSolicitacao},
-  uRegisterSolicitacoes in '..\FORMS\uRegisterSolicitacoes.pas' {frmRegisterSolicitacoes};
+  uRegisterSolicitacoes in '..\FORMS\uRegisterSolicitacoes.pas' {frmRegisterSolicitacoes},
+  uRegisterManutencao in '..\FORMS\uRegisterManutencao.pas' {frmRegister1};
 
 {$R *.res}
 
@@ -25,5 +26,6 @@ begin
   Application.CreateForm(TfrmRegisterEquipament, frmRegisterEquipament);
   Application.CreateForm(TfrmRegisterSolicitacao, frmRegisterSolicitacao);
   Application.CreateForm(TfrmRegisterSolicitacoes, frmRegisterSolicitacoes);
+  Application.CreateForm(TfrmRegister1, frmRegister1);
   Application.Run;
 end.

@@ -14,10 +14,11 @@ type
     Usuarios: TMenuItem;
     Equipamentos: TMenuItem;
     Operacional: TMenuItem;
-    Solicitações: TMenuItem;
+    Solicitacoes: TMenuItem;
     procedure UsuariosClick(Sender: TObject);
     procedure EquipamentosClick(Sender: TObject);
-    procedure SolicitaçõesClick(Sender: TObject);
+    procedure SolicitacoesClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -39,7 +40,7 @@ begin
   frmRegisterEquipament.Show;
 end;
 
-procedure TfrmMain.SolicitaçõesClick(Sender: TObject);
+procedure TfrmMain.SolicitacoesClick(Sender: TObject);
 begin
   frmRegisterSolicitacoes.tcControle.TabIndex := 0;
   frmRegisterSolicitacoes.Show;
