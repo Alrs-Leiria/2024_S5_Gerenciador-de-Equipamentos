@@ -1,4 +1,4 @@
-unit uRegisterEquipament;
+ï»¿unit uRegisterEquipament;
 
 interface
 
@@ -267,7 +267,7 @@ begin
   FDQueryRegister.SQL.Add('marca = :marca,');
   FDQueryRegister.SQL.Add('modelo = :modelo,');
   FDQueryRegister.SQL.Add('patrimonio = :patrimonio,');
-  FDQueryRegister.SQL.Add('tipo_equipamento = :tipo,');
+  FDQueryRegister.SQL.Add('tipo = :tipo,');
   FDQueryRegister.SQL.Add('serie = :serie,');
   FDQueryRegister.SQL.Add('departamento = :departamento,');
   FDQueryRegister.SQL.Add('valor = :valor,');
@@ -519,6 +519,8 @@ begin
 
   equip.data_cadastro := dDataCadastro.Date;
   equip.data_excluido := 0;
+
+  Result := equip;
 end;
 
 procedure TfrmRegisterEquipament.removerEquipamentNoBanco(cod_equipamento : Integer);
@@ -545,7 +547,7 @@ function TfrmRegisterEquipament.validarCampos: Boolean;
 begin
   if (edtDescricao.Text= '') or (edtSerie.Text= '') or (edtPatrimonio.Text= '') or (edtValor.Text= '') then
   begin
-    ShowMessage('Há campos pendentes de preenchimento!');
+    ShowMessage('HÃ¡ campos pendentes de preenchimento!');
     Result := False;
   end
   else if cbxMarca.ItemIndex = 0 then
@@ -587,7 +589,7 @@ procedure TfrmRegisterEquipament.verificarPermissaoTroca;
 begin
     if (permitirTroca = False) and (tcControle.ActiveTab = tList) then
     begin
-      if ConfirmDialogSync('Deseja cancelar a edição') then
+      if ConfirmDialogSync('Deseja cancelar a edicao') then
       begin
         finalizaAcao;
       end

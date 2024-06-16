@@ -1,0 +1,234 @@
+unit uRegister;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Controls.Presentation, uDataModule, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.Client, Data.DB, FireDAC.Comp.DataSet, FMX.Menus, FMX.TabControl, FMX.DialogService.Async,
+  System.SyncObjs, FMX.DialogService;
+
+type
+  TfrmRegister = class(TForm)
+    pnHead: TPanel;
+    btnNewRegister: TButton;
+    btnSaveRegister: TButton;
+    btnDeleteRegister: TButton;
+    btnCancelRegister: TButton;
+    btnQuit: TButton;
+    tcControle: TTabControl;
+    tList: TTabItem;
+    tAction: TTabItem;
+    FDQueryRegister: TFDQuery;
+    procedure btnNewRegisterClick(Sender: TObject);
+    procedure btnSaveRegisterClick(Sender: TObject);
+    procedure btnCancelRegisterClick(Sender: TObject);
+    procedure btnDeleteRegisterClick(Sender: TObject);
+    procedure btnQuitClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure tcControleChange(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure ajustarComponentes;
+    procedure limparEdits();
+    procedure finalizaAcao();
+    procedure verificarOperacao();
+    procedure verificarPermissaoTroca();
+
+    procedure listar;
+
+    function validarCampos() : Boolean;
+    function ConfirmDialogSync(const AMessage: String) : Boolean;
+
+
+
+    var operacao : string;
+    var permitirTroca : Boolean;
+  end;
+
+var
+  frmRegister: TfrmRegister;
+
+implementation
+
+{$R *.fmx}
+procedure TfrmRegister.ajustarComponentes;
+begin
+  if tcControle.ActiveTab = tList then
+  begin
+    btnNewRegister.Visible := True;
+    btnNewRegister.Enabled := True;
+
+    btnQuit.Visible := True;
+    btnQuit.Enabled := True;
+
+    btnSaveRegister.Visible := False;
+    btnSaveRegister.Enabled := False;
+
+    btnCancelRegister.Visible := False;
+    btnCancelRegister.Enabled := False;
+
+    btnDeleteRegister.Visible := False;
+    btnDeleteRegister.Enabled := False;
+  end
+  else if tcControle.ActiveTab = tAction then
+  begin
+    btnSaveRegister.Visible := True;
+    btnSaveRegister.Enabled := True;
+
+    btnCancelRegister.Visible := True;
+    btnCancelRegister.Enabled := True;
+
+    btnDeleteRegister.Visible := True;
+    btnDeleteRegister.Enabled := True;
+
+    btnNewRegister.Visible := False;
+    btnNewRegister.Enabled := False;
+
+    btnQuit.Visible := False;
+    btnQuit.Enabled := False;
+
+  end;
+end;
+procedure TfrmRegister.btnNewRegisterClick(Sender: TObject);
+begin
+  operacao := 'inserir';
+  tcControle.TabIndex := 1;
+  permitirTroca := false;
+  if not(FDQueryRegister.State in [dsEdit, dsInsert]) then
+  begin
+    FDQueryRegister.Insert;
+  end;
+
+end;
+
+procedure TfrmRegister.btnSaveRegisterClick(Sender: TObject);
+begin
+{
+  if not(FDQueryRegister.State in [dsEdit, dsInsert]) then
+  begin
+    FDTransactionRegister.StartTransaction;
+    FDQueryRegister.Post;
+    FDTransactionRegister.RollbackRetaining;
+  end;}
+end;
+
+function TfrmRegister.ConfirmDialogSync(const AMessage: String): Boolean;
+var Event : TEvent;
+var ResultValue : Boolean;
+begin
+  Event := TEvent.Create;
+  try
+    TDialogService.MessageDialog(AMessage, TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK, TMsgDlgBtn.mbCancel], TMsgDlgBtn.mbOK, 0,
+      procedure(const AResult: TModalResult)
+    begin
+    ResultValue := AResult = mrOk;
+    Event.SetEvent;
+    end);
+    Event.WaitFor(INFINITE);
+    Result := ResultValue;
+  finally
+    Event.Free;
+  end;
+end;
+
+procedure TfrmRegister.finalizaAcao;
+begin
+  limparEdits();
+  operacao := '';
+  permitirTroca := True;
+  tcControle.TabIndex := 0;
+end;
+
+procedure TfrmRegister.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  finalizaAcao;
+end;
+
+procedure TfrmRegister.FormCreate(Sender: TObject);
+begin
+  ajustarComponentes;
+  listar;
+  permitirTroca := True;
+  FDQueryRegister.Open;
+end;
+
+procedure TfrmRegister.limparEdits;
+begin
+
+end;
+
+procedure TfrmRegister.listar;
+begin
+
+end;
+
+procedure TfrmRegister.tcControleChange(Sender: TObject);
+begin
+  ajustarComponentes;
+  verificarOperacao;
+  verificarPermissaoTroca;
+end;
+
+function TfrmRegister.validarCampos: Boolean;
+begin
+
+end;
+
+procedure TfrmRegister.verificarOperacao;
+begin
+  if (tcControle.TabIndex = 1) and (operacao = '') then
+  begin
+    tcControle.TabIndex := 0;
+
+    ShowMessage('Operacao nao permitida');
+  end
+end;
+
+procedure TfrmRegister.verificarPermissaoTroca;
+begin
+    if (permitirTroca = False) and (tcControle.ActiveTab = tList) then
+    begin
+      if ConfirmDialogSync('Deseja cancelar a edição') then
+      begin
+        finalizaAcao;
+      end
+      else
+      begin
+        tcControle.TabIndex := 1;
+      end;
+    end;
+end;
+
+procedure TfrmRegister.btnDeleteRegisterClick(Sender: TObject);
+begin
+  FDQueryRegister.Edit;
+  {FDQueryRegister.FieldByName('DT_EXCLUIDO').AsDateTime := Date;}
+  {FDTransactionRegister.StartTransaction;}
+  FDQueryRegister.Post;
+  {FDTransactionRegister.CommitRetaining;}
+end;
+
+
+procedure TfrmRegister.btnCancelRegisterClick(Sender: TObject);
+begin
+  if FDQueryRegister.State in [dsinserT, dsEdit] then
+  begin
+    FDQueryRegister.Cancel;
+    {FDTransactionRegister.RollbackRetaining;}
+  end;
+
+end;
+
+procedure TfrmRegister.btnQuitClick(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+end.

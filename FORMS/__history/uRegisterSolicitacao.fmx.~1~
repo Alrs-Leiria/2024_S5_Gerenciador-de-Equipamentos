@@ -1,0 +1,156 @@
+inherited frmRegisterSolicitacao: TfrmRegisterSolicitacao
+  Caption = 'Solicita'#231#227'o'
+  ClientWidth = 648
+  DesignerMasterStyle = 0
+  inherited pnHead: TPanel
+    Size.Width = 648.000000000000000000
+    inherited btnQuit: TButton
+      Position.X = 558.000000000000000000
+    end
+  end
+  inherited tcControle: TTabControl
+    Size.Width = 648.000000000000000000
+    Sizes = (
+      648s
+      389s
+      648s
+      389s)
+    inherited tList: TTabItem
+      ExplicitSize.cx = 68.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+    inherited tAction: TTabItem
+      ExplicitSize.cx = 47.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object Panel1: TPanel
+        Align = Client
+        Size.Width = 648.000000000000000000
+        Size.Height = 389.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object lDescricao: TLabel
+          Position.X = 8.000000000000000000
+          Position.Y = 72.000000000000000000
+          Text = 'Descricao'
+          TabOrder = 0
+        end
+        object lAssunto: TLabel
+          Position.X = 8.000000000000000000
+          Position.Y = 15.000000000000000000
+          Text = 'Assunto'
+          TabOrder = 1
+        end
+        object lTipo: TLabel
+          Position.X = 8.000000000000000000
+          Position.Y = 155.000000000000000000
+          Size.Width = 61.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'lTipo'
+          TabOrder = 2
+        end
+        object Panel2: TPanel
+          Position.X = 1.000000000000000000
+          Position.Y = 197.000000000000000000
+          Size.Width = 639.000000000000000000
+          Size.Height = 204.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object lmEquipamento: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 37.000000000000000000
+            Size.Width = 129.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Codigo Equipamento'
+            TabOrder = 0
+          end
+          object lmStatus: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 97.000000000000000000
+            Size.Width = 73.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Status'
+            TabOrder = 1
+            object ComboBox1: TComboBox
+              Position.X = 81.000000000000000000
+              Size.Width = 128.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 4
+            end
+          end
+          object lmDataAbertura: TLabel
+            Position.X = 304.000000000000000000
+            Position.Y = 31.000000000000000000
+            Size.Width = 129.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'lmDataAbertura'
+            TabOrder = 2
+          end
+          object lmPrevisaoFechamento: TLabel
+            Position.X = 304.000000000000000000
+            Position.Y = 96.000000000000000000
+            Size.Width = 145.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Previsao Fechamento'
+            TabOrder = 3
+          end
+          object Edit1: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 4
+            Position.X = 141.000000000000000000
+            Position.Y = 32.000000000000000000
+            Size.Width = 76.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object DateEdit1: TDateEdit
+            Date = 45458.000000000000000000
+            Position.X = 304.000000000000000000
+            Position.Y = 56.000000000000000000
+            TabOrder = 5
+          end
+          object DateEdit2: TDateEdit
+            Date = 45458.000000000000000000
+            Position.X = 304.000000000000000000
+            Position.Y = 121.000000000000000000
+            TabOrder = 6
+          end
+        end
+        object Edit2: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          Position.X = 8.000000000000000000
+          Position.Y = 40.000000000000000000
+          Size.Width = 617.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Memo1: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          Position.X = 8.000000000000000000
+          Position.Y = 97.000000000000000000
+          Size.Width = 617.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Viewport.Width = 613.000000000000000000
+          Viewport.Height = 36.000000000000000000
+        end
+        object ComboBox2: TComboBox
+          Position.X = 45.000000000000000000
+          Position.Y = 145.000000000000000000
+          Size.Width = 212.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+        end
+      end
+    end
+  end
+end

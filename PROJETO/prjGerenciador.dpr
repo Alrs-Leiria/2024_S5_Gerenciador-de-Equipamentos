@@ -9,7 +9,9 @@ uses
   uConfigDatabase in '..\FORMS\uConfigDatabase.pas' {frmConfigDatabase},
   uRegister in '..\FORMS\uRegister.pas' {frmRegister},
   URegisterUser in '..\FORMS\URegisterUser.pas' {frmRegisterUser},
-  uRegisterEquipament in '..\FORMS\uRegisterEquipament.pas' {frmRegisterEquipament};
+  uRegisterEquipament in '..\FORMS\uRegisterEquipament.pas' {frmRegisterEquipament},
+  uRegisterSolicitacao in '..\FORMS\uRegisterSolicitacao.pas' {frmRegisterSolicitacao},
+  uRegisterSolicitacoes in '..\FORMS\uRegisterSolicitacoes.pas' {frmRegisterSolicitacoes};
 
 {$R *.res}
 
@@ -21,5 +23,7 @@ begin
   Application.CreateForm(TfrmRegister, frmRegister);
   Application.CreateForm(TfrmRegisterUser, frmRegisterUser);
   Application.CreateForm(TfrmRegisterEquipament, frmRegisterEquipament);
+  Application.CreateForm(TfrmRegisterSolicitacao, frmRegisterSolicitacao);
+  Application.CreateForm(TfrmRegisterSolicitacoes, frmRegisterSolicitacoes);
   Application.Run;
 end.

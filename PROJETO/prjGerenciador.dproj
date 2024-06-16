@@ -217,6 +217,14 @@
             <Form>frmRegisterEquipament</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\FORMS\uRegisterSolicitacao.pas">
+            <Form>frmRegisterSolicitacao</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\uRegisterSolicitacoes.pas">
+            <Form>frmRegisterSolicitacoes</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

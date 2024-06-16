@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Menus,
-  URegisterUser, uRegisterEquipament;
+  URegisterUser, uRegisterEquipament, uRegisterSolicitacoes;
 
 type
   TfrmMain = class(TForm)
@@ -13,8 +13,11 @@ type
     Cadastros: TMenuItem;
     Usuarios: TMenuItem;
     Equipamentos: TMenuItem;
+    Operacional: TMenuItem;
+    Solicitações: TMenuItem;
     procedure UsuariosClick(Sender: TObject);
     procedure EquipamentosClick(Sender: TObject);
+    procedure SolicitaçõesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,6 +29,7 @@ var
 
 implementation
 
+
 {$R *.fmx}
 
 
@@ -33,6 +37,12 @@ procedure TfrmMain.EquipamentosClick(Sender: TObject);
 begin
   frmRegisterEquipament.tcControle.TabIndex := 0;
   frmRegisterEquipament.Show;
+end;
+
+procedure TfrmMain.SolicitaçõesClick(Sender: TObject);
+begin
+  frmRegisterSolicitacoes.tcControle.TabIndex := 0;
+  frmRegisterSolicitacoes.Show;
 end;
 
 procedure TfrmMain.UsuariosClick(Sender: TObject);

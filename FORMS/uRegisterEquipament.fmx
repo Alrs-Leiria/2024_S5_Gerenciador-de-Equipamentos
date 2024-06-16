@@ -3,7 +3,6 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
   OnClose = FormClose
   DesignerMasterStyle = 0
   inherited tcControle: TTabControl
-    TabIndex = 0
     OnChange = tcControleChange
     Sizes = (
       640s
@@ -11,7 +10,6 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       640s
       389s)
     inherited tList: TTabItem
-      IsSelected = True
       ExplicitSize.cx = 68.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object lvEquipamentos: TListView
@@ -19,6 +17,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         ItemEditAppearanceClassName = 'TDynamicAppearance'
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
+        Position.X = 1.000000000000000000
         Position.Y = 8.000000000000000000
         Size.Width = 640.000000000000000000
         Size.Height = 377.000000000000000000
@@ -82,7 +81,6 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       end
     end
     inherited tAction: TTabItem
-      IsSelected = False
       ExplicitSize.cx = 47.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object edtCodigo: TEdit
@@ -297,6 +295,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         end
       end
       object cbxTipo: TComboBox
+        ItemIndex = 2
         Position.X = 135.000000000000000000
         Position.Y = 128.000000000000000000
         TabOrder = 18
@@ -305,10 +304,17 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
           Text = '--Tipo--'
         end
         object lbNotebook: TListBoxItem
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 0
           Text = 'Notebook'
         end
         object lbImpressora: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 1
           Text = 'Impressora'
         end
@@ -339,8 +345,8 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Height = 104.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 23
-        Viewport.Width = 522.000000000000000000
-        Viewport.Height = 104.000000000000000000
+        Viewport.Width = 518.000000000000000000
+        Viewport.Height = 100.000000000000000000
       end
       object PATRIMONIO: TLabel
         StyledSettings = [Family, FontColor]

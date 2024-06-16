@@ -1,0 +1,224 @@
+inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
+  Caption = 'frmRegister1'
+  DesignerMasterStyle = 0
+  inherited tcControle: TTabControl
+    Sizes = (
+      640s
+      389s
+      640s
+      389s)
+    inherited tList: TTabItem
+      ExplicitSize.cx = 68.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object lvSolicitacoes: TListView
+        ItemAppearanceClassName = 'TDynamicAppearance'
+        ItemEditAppearanceClassName = 'TDynamicAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Position.Y = 8.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 377.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'txtCodigo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 33.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = -2.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtAssunto'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 185.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 38.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtTipo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 87.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 230.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtSituacao'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 71.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 326.000000000000000000
+          end>
+        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Text1'
+            AppearanceClassName = 'TTextObjectAppearance'
+          end>
+      end
+    end
+    inherited tAction: TTabItem
+      ExplicitSize.cx = 47.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object Panel1: TPanel
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 389.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object lDescricao: TLabel
+          Position.X = 8.000000000000000000
+          Position.Y = 72.000000000000000000
+          Text = 'Descricao'
+          TabOrder = 0
+        end
+        object lAssunto: TLabel
+          Position.X = 8.000000000000000000
+          Position.Y = 15.000000000000000000
+          Text = 'Assunto'
+          TabOrder = 1
+        end
+        object lTipo: TLabel
+          Position.X = 8.000000000000000000
+          Position.Y = 162.000000000000000000
+          Size.Width = 61.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Tipo'
+          TabOrder = 2
+        end
+        object pManutencao: TPanel
+          Position.X = 1.000000000000000000
+          Position.Y = 197.000000000000000000
+          Size.Width = 639.000000000000000000
+          Size.Height = 204.000000000000000000
+          Size.PlatformDefault = False
+          Visible = False
+          TabOrder = 3
+          object lmEquipamento: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 37.000000000000000000
+            Size.Width = 129.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Codigo Equipamento'
+            TabOrder = 0
+          end
+          object lmStatus: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 97.000000000000000000
+            Size.Width = 73.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Status'
+            TabOrder = 1
+            object ComboBox1: TComboBox
+              Position.X = 81.000000000000000000
+              Size.Width = 128.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 4
+            end
+          end
+          object lmDataAbertura: TLabel
+            Position.X = 304.000000000000000000
+            Position.Y = 31.000000000000000000
+            Size.Width = 129.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'lmDataAbertura'
+            TabOrder = 2
+          end
+          object lmPrevisaoFechamento: TLabel
+            Position.X = 304.000000000000000000
+            Position.Y = 96.000000000000000000
+            Size.Width = 145.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Previsao Fechamento'
+            TabOrder = 3
+          end
+          object Edit1: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 4
+            Position.X = 141.000000000000000000
+            Position.Y = 32.000000000000000000
+            Size.Width = 76.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object DateEdit1: TDateEdit
+            Date = 45458.000000000000000000
+            Position.X = 304.000000000000000000
+            Position.Y = 56.000000000000000000
+            TabOrder = 5
+          end
+          object DateEdit2: TDateEdit
+            Date = 45458.000000000000000000
+            Position.X = 304.000000000000000000
+            Position.Y = 121.000000000000000000
+            TabOrder = 6
+          end
+        end
+        object Edit2: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          Position.X = 8.000000000000000000
+          Position.Y = 40.000000000000000000
+          Size.Width = 617.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Memo1: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          Position.X = 8.000000000000000000
+          Position.Y = 97.000000000000000000
+          Size.Width = 617.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Viewport.Width = 613.000000000000000000
+          Viewport.Height = 36.000000000000000000
+        end
+        object ComboBox2: TComboBox
+          ItemIndex = 1
+          Position.X = 45.000000000000000000
+          Position.Y = 162.000000000000000000
+          Size.Width = 212.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          object lbHTipo: TListBoxGroupHeader
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            Text = '--Tipo--'
+          end
+          object lbAlocacao: TListBoxItem
+            IsSelected = True
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Alocacao'
+          end
+          object lbEmprestimo: TListBoxItem
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'Emprestimo'
+          end
+          object lbManutencao: TListBoxItem
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            Text = 'Manutencao'
+          end
+        end
+      end
+    end
+  end
+end
