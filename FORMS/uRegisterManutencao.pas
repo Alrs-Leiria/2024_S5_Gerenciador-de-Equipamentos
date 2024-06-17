@@ -49,13 +49,22 @@ type
     dFechamento: TDateEdit;
     lAbertura: TLabel;
     lPrevisao: TLabel;
-    lvEquipamentos: TListView;
+    lvManutencao: TListView;
+    edtValor: TEdit;
+    Label1: TLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure btnNewRegisterClick(Sender: TObject);
+    procedure btnSaveRegisterClick(Sender: TObject);
+    procedure btnCancelRegisterClick(Sender: TObject);
+    procedure btnDeleteRegisterClick(Sender: TObject);
+    procedure tcControleChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     function  buscarNoBanco(manutec : TManutencao) : TManutencao;
-    procedure inserirNoBanco(manutec : TManutencao);
+    procedure inserirManutencaoNoBanco(manutec : TManutencao);
     procedure atualizarNoBanco(manutec : TManutencao);
     procedure removerNoBanco(cod_manutec : Integer);
     procedure listarDoBanco();
@@ -80,13 +89,15 @@ type
 
 var
   frmRegisterManutencao: TfrmRegisterManutencao;
+  frmRegisterEquipament: TfrmRegisterEquipament;
 
 implementation
+
 
 {$R *.fmx}
 
 { TfrmRegisterManutencao }
- procedure TfrmRegisterManutencao.ajustarComponentes;
+procedure TfrmRegisterManutencao.ajustarComponentes;
 begin
   inherited;
 
@@ -149,9 +160,40 @@ begin
   tcControle.TabIndex := 0;
 end;
 
+procedure TfrmRegisterManutencao.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  finalizaAcao;
+end;
+
+procedure TfrmRegisterManutencao.FormCreate(Sender: TObject);
+begin
+  inherited;
+  ajustarComponentes;
+  listarDoBanco;
+  permitirTroca := True;
+end;
+
+procedure TfrmRegisterManutencao.tcControleChange(Sender: TObject);
+begin
+  inherited;
+  ajustarComponentes;
+  verificarOperacao;
+  verificarPermissaoTroca;
+end;
+
 function TfrmRegisterManutencao.validarCampos: Boolean;
 begin
-
+  if (edtEquipamento.Text= '') or (edtValor.Text= '') or (mDescricao.Text= '') then
+  begin
+    ShowMessage('Há campos pendentes de preenchimento!');
+    Result := False;
+  end
+  else
+  begin
+    Result := True;
+  end;
 end;
 
 procedure TfrmRegisterManutencao.verificarOperacao;
@@ -199,52 +241,188 @@ begin
   end;
 end;
 
-procedure TfrmRegisterManutencao.atualizarNoBanco(manutec: TManutencao);
-begin
-
-end;
-
-function TfrmRegisterManutencao.buscarNoBanco(
-  manutec: TManutencao): TManutencao;
-begin
-
-end;
-
 procedure TfrmRegisterManutencao.inserirNaLista(manutec: TManutencao);
 begin
 
 end;
 
-procedure TfrmRegisterManutencao.inserirNoBanco(manutec: TManutencao);
+procedure TfrmRegisterManutencao.btnCancelRegisterClick(Sender: TObject);
 begin
+  inherited;
+  finalizaAcao;
+end;
 
+procedure TfrmRegisterManutencao.btnDeleteRegisterClick(Sender: TObject);
+begin
+  inherited;
+  removerNoBanco(StrToInt(edtCodigo.Text));
+  showMessage('Manutencao removida com sucesso!');
+  finalizaAcao;
+end;
+
+procedure TfrmRegisterManutencao.btnNewRegisterClick(Sender: TObject);
+begin
+  inherited;
+  limparEdits;
+  operacao := 'inserir';
+  tcControle.TabIndex := 1;
+  permitirTroca := false;
+end;
+
+procedure TfrmRegisterManutencao.btnSaveRegisterClick(Sender: TObject);
+var vManutencao : TManutencao;
+begin
+  inherited;
+  if validarCampos() then
+  begin
+    vManutencao := preencherObjeto(vManutencao);
+
+    if operacao = 'editar' then
+    begin
+      vManutencao.codigo := StrToInt(edtCodigo.Text);
+      atualizarNoBanco(vManutencao);
+      showMessage('Manutencao atualizado com sucesso!');
+      finalizaAcao;
+    end
+    else if operacao = 'inserir' then
+    begin
+      inserirManutencaoNoBanco(vManutencao);
+      showMessage('Manutencao cadastrado com sucesso!');
+      finalizaAcao;
+    end;
+  end;
+end;
+
+procedure TfrmRegisterManutencao.atualizarNoBanco(manutec: TManutencao);
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('UPDATE solicitacoes_manutencao SET');
+  FDQueryRegister.SQL.Add('descricao = :descricao,');
+  FDQueryRegister.SQL.Add('equipamento = :equipamento,');
+  FDQueryRegister.SQL.Add('status = :status,');
+  FDQueryRegister.SQL.Add('data_abertura = :data_abertura,');
+  FDQueryRegister.SQL.Add('data_fechamento = :data_fechamento,');
+  FDQueryRegister.SQL.Add('solicitacao = :solicitacao');
+  FDQueryRegister.SQL.Add('WHERE codigo = :codigo');
+
+  manutec := preencherParamFromQuery(manutec, FDQueryRegister);
+  FDQueryRegister.ExecSQL;
+end;
+
+function TfrmRegisterManutencao.buscarNoBanco(
+  manutec: TManutencao): TManutencao;
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('SELECT * FROM solicitacoes_manutencao');
+  FDQueryRegister.SQL.Add('WHERE codigo = :codigo');
+  FDQueryRegister.ParamByName('codigo').AsInteger := manutec.codigo;
+
+  FDQueryRegister.Open();
+
+  manutec := preencherFieldFromQuery(manutec, FDQueryRegister);
+
+  Result := manutec;
+end;
+
+procedure TfrmRegisterManutencao.inserirManutencaoNoBanco(manutec: TManutencao);
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('INSERT INTO solicitacoes_manutencao(equipamento, descricao, status, data_abertura, data_fechamento, solicitacao)');
+  FDQueryRegister.SQL.Add('VALUES(:equipamento, :descricao, :status, :data_abertura, :data_fechamento, :solicitacao)');
+
+  manutec.codigo := -1;
+  manutec.status := 'Pendente';
+  FDQueryRegister.ParamByName('equipamento');
+  manutec := preencherParamFromQuery(manutec, FDQueryRegister);
+
+  FDQueryRegister.ExecSQL;
 end;
 
 procedure TfrmRegisterManutencao.listarDoBanco;
+var vManutencao : TManutencao;
 begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
 
+  FDQueryRegister.SQL.Add('SELECT * FROM solicitacoes_manutencao');
+
+  FDQueryRegister.Open();
+
+  FDQueryRegister.First;
+
+  lvManutencao.Items.Clear;
+
+  while not FDQueryRegister.Eof do
+  begin
+    vManutencao := preencherFieldFromQuery(vManutencao, FDQueryRegister);
+
+    inserirNaLista(vManutencao);
+
+    FDQueryRegister.Next;
+  end;
 end;
 
-function TfrmRegisterManutencao.preencherFieldFromQuery(manutec: TManutencao;
-  query: TFDQuery): TManutencao;
+procedure TfrmRegisterManutencao.removerNoBanco(cod_manutec: Integer);
 begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+  FDQueryRegister.SQL.Add('DELETE FROM solicitacoes_manutencao');
+  FDQueryRegister.SQL.Add('WHERE codigo = :codigo');
 
+  FDQueryRegister.ParamByName('codigo').AsInteger := cod_manutec;
+
+  FDQueryRegister.ExecSQL;
+end;
+
+function TfrmRegisterManutencao.preencherFieldFromQuery(
+  manutec: TManutencao; query: TFDQuery): TManutencao;
+begin
+  manutec.codigo :=  query.FieldByName('codigo').AsInteger;
+  manutec.equipamento.codigo := query.FieldByName('equipamento').AsInteger;
+  manutec.descricao := query.FieldByName('descricao').AsString;
+  manutec.status := query.FieldByName('status').AsString;
+  manutec.abertura :=  query.FieldByName('data_abertura').AsDateTime;
+  manutec.fechamento :=  query.FieldByName('data_fechamento').AsDateTime;
+  manutec.solicitacao.codigo :=  query.FieldByName('solicitacao').AsInteger;
+
+  Result := manutec;
 end;
 
 function TfrmRegisterManutencao.preencherObjeto(
   manutec: TManutencao): TManutencao;
 begin
+  manutec.equipamento.codigo := StrToInt(edtEquipamento.Text);
+  manutec.equipamento := frmRegisterEquipament.buscarEquipamentNoBanco(manutec.equipamento);
+  manutec.descricao := mdescricao.Text;
+  manutec.status :=  cbxStatus.Items[cbxStatus.ItemIndex];
+  manutec.abertura := dAbertura.Date;
+  manutec.fechamento := dFechamento.Date;
+  manutec.solicitacao.codigo := 0;
 
+  Result := manutec;
 end;
 
 function TfrmRegisterManutencao.preencherParamFromQuery(manutec: TManutencao;
   query: TFDQuery): TManutencao;
 begin
+  if manutec.codigo <> -1 then
+  begin
+    query.ParamByName('codigo').AsInteger := manutec.codigo;
+  end;
+  query.ParamByName('descricao').AsString := manutec.descricao;
+  query.ParamByName('equipamento').AsInteger := manutec.equipamento.codigo;
+  query.ParamByName('status').AsString := manutec.status;
+  query.ParamByName('data_abertura').AsDateTime := manutec.abertura;
+  query.ParamByName('data_fechamento').AsDateTime := manutec.fechamento;
+  query.ParamByName('solicitacao').AsInteger := manutec.solicitacao.codigo;
 
+  Result := manutec;
 end;
 
-procedure TfrmRegisterManutencao.removerNoBanco(cod_manutec: Integer);
-begin
-
-end;
 end.

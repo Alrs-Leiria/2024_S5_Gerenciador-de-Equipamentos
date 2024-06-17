@@ -13,7 +13,8 @@ uses
   uRegisterSolicitacao in '..\FORMS\uRegisterSolicitacao.pas' {frmRegisterSolicitacao},
   uRegisterSolicitacoes in '..\FORMS\uRegisterSolicitacoes.pas' {frmRegisterSolicitacoes},
   uRegisterManutencao in '..\FORMS\uRegisterManutencao.pas' {frmRegisterManutencao},
-  uRegisterLiberacao in '..\FORMS\uRegisterLiberacao.pas' {frmRegisterLiberacao};
+  uRegisterLiberacao in '..\FORMS\uRegisterLiberacao.pas' {frmRegisterLiberacao},
+  uLogin in '..\FORMS\uLogin.pas' {Form1};
 
 {$R *.res}
 
@@ -29,5 +30,6 @@ begin
   Application.CreateForm(TfrmRegisterSolicitacoes, frmRegisterSolicitacoes);
   Application.CreateForm(TfrmRegisterManutencao, frmRegisterManutencao);
   Application.CreateForm(TfrmRegisterLiberacao, frmRegisterLiberacao);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

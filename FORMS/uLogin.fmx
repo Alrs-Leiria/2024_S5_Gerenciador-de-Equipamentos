@@ -1,0 +1,84 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object pLogin: TPanel
+    Align = Center
+    Size.Width = 262.000000000000000000
+    Size.Height = 325.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Position.X = 24.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Position.X = 89.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 152.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Edit3: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.X = 24.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lLogin: TLabel
+      StyledSettings = [Family, FontColor]
+      Position.X = 96.000000000000000000
+      Position.Y = 26.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = 'LOGIN'
+      TabOrder = 3
+    end
+    object Label1: TLabel
+      Position.X = 24.000000000000000000
+      Position.Y = 95.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ID'
+      TabOrder = 6
+    end
+    object Nome: TLabel
+      Position.X = 89.000000000000000000
+      Position.Y = 95.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Nome'
+      TabOrder = 5
+    end
+    object lSenha: TLabel
+      Position.X = 24.000000000000000000
+      Position.Y = 160.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Senha'
+      TabOrder = 4
+    end
+  end
+end

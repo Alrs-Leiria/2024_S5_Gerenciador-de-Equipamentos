@@ -127,8 +127,8 @@ inherited frmRegisterLiberacao: TfrmRegisterLiberacao
           Size.Height = 64.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 9
-          Viewport.Width = 606.000000000000000000
-          Viewport.Height = 60.000000000000000000
+          Viewport.Width = 610.000000000000000000
+          Viewport.Height = 64.000000000000000000
         end
         object cbxStatus: TComboBox
           ItemIndex = 2

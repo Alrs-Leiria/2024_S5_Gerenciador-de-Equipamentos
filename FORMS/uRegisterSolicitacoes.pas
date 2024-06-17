@@ -12,12 +12,13 @@ uses
   FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
   FMX.ListView, FMX.Memo.Types, FMX.ListBox, FMX.ScrollBox, FMX.Memo,
   FMX.DateTimeCtrls, FMX.Edit, FMX.DialogService.Async,
-  System.SyncObjs, FMX.DialogService;
+  System.SyncObjs, FMX.DialogService, URegisteruser;
 
 type
   TSolicitacao = record
-    codigo, tipo : integer;
+    codigo, tipo, prioridade : Integer;
     assunto, detalhamento, situacao : string;
+    autor : TUser;
   end;
   TfrmRegisterSolicitacoes = class(TfrmRegister)
     lvSolicitacoes: TListView;
@@ -43,6 +44,12 @@ type
     lbManutencao: TListBoxItem;
     edtCodigo: TEdit;
     lSolicitacao: TLabel;
+    cbxPrioridade: TComboBox;
+    ListBoxItem1: TListBoxItem;
+    ListBoxItem2: TListBoxItem;
+    ListBoxItem3: TListBoxItem;
+    lPrioridade: TLabel;
+    ListBoxGroupHeader2: TListBoxGroupHeader;
     procedure btnSaveRegisterClick(Sender: TObject);
     procedure lvSolicitacoesItemClickEx(const Sender: TObject;
       ItemIndex: Integer; const LocalClickPos: TPointF;
@@ -52,6 +59,7 @@ type
     procedure tcControleChange(Sender: TObject);
     procedure btnCancelRegisterClick(Sender: TObject);
     procedure btnNewRegisterClick(Sender: TObject);
+    procedure btnDeleteRegisterClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -164,6 +172,11 @@ begin
     ShowMessage('Defina o tipo da solicitacao!');
     Result := False;
   end
+  else if cbxPrioridade.ItemIndex = 0 then
+  begin
+    ShowMessage('Defina a prioridade da solicitacao!');
+    Result := False;
+  end
   else
   begin
     Result := True;
@@ -224,7 +237,9 @@ begin
   FDQueryRegister.SQL.Add('assunto = :assunto,');
   FDQueryRegister.SQL.Add('detalhamento = :detalhamento,');
   FDQueryRegister.SQL.Add('situacao = :situacao,');
-  FDQueryRegister.SQL.Add('tipo = :tipo');
+  FDQueryRegister.SQL.Add('tipo = :tipo,');
+  FDQueryRegister.SQL.Add('autor = :autor,');
+  FDQueryRegister.SQL.Add('prioridade = :prioridade');
   FDQueryRegister.SQL.Add('WHERE codigo = :codigo');
 
   solicitacao := preencherParamFromQuery(solicitacao, FDQueryRegister);
@@ -234,6 +249,14 @@ end;
 procedure TfrmRegisterSolicitacoes.btnCancelRegisterClick(Sender: TObject);
 begin
   inherited;
+  finalizaAcao;
+end;
+
+procedure TfrmRegisterSolicitacoes.btnDeleteRegisterClick(Sender: TObject);
+begin
+  inherited;
+  removerNoBanco(StrToInt(edtCodigo.Text));
+  showMessage('Solicitacao removida com sucesso!');
   finalizaAcao;
 end;
 
@@ -259,13 +282,13 @@ begin
       vSolicitacao.codigo := StrToInt(edtCodigo.Text);
 
       atualizarNoBanco(vSolicitacao);
-      showMessage('Equipamento atualizado com sucesso!');
+      showMessage('Solicitacao atualizado com sucesso!');
       finalizaAcao;
     end
     else if operacao = 'inserir' then
     begin
       inserirNoBanco(vSolicitacao);
-      showMessage('Equipamento cadastrado com sucesso!');
+      showMessage('Solicitacao cadastrado com sucesso!');
       finalizaAcao;
     end;
   end;
@@ -311,6 +334,7 @@ begin
     TListItemText(Objects.FindDrawable('txtAssunto')).Text := solicitacao.assunto;
     TListItemText(Objects.FindDrawable('txtTipo')).Text := IntToStr(solicitacao.tipo);
     TListItemText(Objects.FindDrawable('txtSituacao')).Text := solicitacao.situacao;
+    TListItemText(Objects.FindDrawable('txtPrioridade')).Text := IntToStr(solicitacao.prioridade);
   end;
 end;
 
@@ -319,13 +343,13 @@ begin
   FDQueryRegister.Close;
   FDQueryRegister.SQL.Clear;
 
-  FDQueryRegister.SQL.Add('INSERT INTO solicitacoes');
-  FDQueryRegister.SQL.Add('(assunto, detalhamento, situacao, tipo)');
-  FDQueryRegister.SQL.Add('VALUES(:assunto, :detalhamento, :situacao, :tipo)');
+  FDQueryRegister.SQL.Add('INSERT INTO solicitacoes(assunto, detalhamento, situacao, tipo, autor, prioridade)');
+  FDQueryRegister.SQL.Add('VALUES(:assunto, :detalhamento, :situacao, :tipo, :autor, :prioridade)');
 
   solicitacao.codigo := -1;
   solicitacao.situacao := 'Aberto';
-  preencherParamFromQuery(solicitacao, FDQueryRegister);
+  solicitacao.autor.id := 0;
+  solicitacao := preencherParamFromQuery(solicitacao, FDQueryRegister);
 
   FDQueryRegister.ExecSQL;
 end;
@@ -367,8 +391,8 @@ begin
   edtCodigo.Text := IntToStr(vSolicitacao.codigo);
   edtAssunto.Text := vSolicitacao.assunto ;
   cbxTipo.ItemIndex := vSolicitacao.tipo;
+  cbxPrioridade.ItemIndex := vSolicitacao.prioridade;
   mDetalhamento.Text := vSolicitacao.detalhamento;
-
 
   operacao := 'editar';
   tcControle.TabIndex := 1;
@@ -383,6 +407,8 @@ begin
   solicitacao.detalhamento := query.FieldByName('detalhamento').AsString;
   solicitacao.situacao := query.FieldByName('situacao').AsString;
   solicitacao.tipo := query.FieldByName('tipo').AsInteger;
+  solicitacao.autor.id :=  query.FieldByName('autor').AsInteger;
+  solicitacao.prioridade :=  query.FieldByName('prioridade').AsInteger;
 
   Result := solicitacao;
 end;
@@ -393,6 +419,7 @@ begin
   solicitacao.assunto := edtAssunto.Text;
   solicitacao.detalhamento := mDetalhamento.Text;
   solicitacao.situacao := 'Aberto';
+  solicitacao.prioridade := cbxPrioridade.ItemIndex;
   solicitacao.tipo := cbxTipo.itemIndex;
 
   Result := solicitacao;
@@ -409,13 +436,22 @@ begin
   query.ParamByName('detalhamento').AsString := solicitacao.detalhamento;
   query.ParamByName('situacao').AsString := solicitacao.situacao;
   query.ParamByName('tipo').AsInteger := solicitacao.tipo;
+  query.ParamByName('autor').AsInteger := solicitacao.autor.id;
+  query.ParamByName('prioridade').AsInteger := solicitacao.prioridade;
 
   Result := solicitacao;
 end;
 
 procedure TfrmRegisterSolicitacoes.removerNoBanco(cod_solicitacao: Integer);
 begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+  FDQueryRegister.SQL.Add('DELETE FROM solicitacoes');
+  FDQueryRegister.SQL.Add('WHERE codigo = :codigo');
 
+  FDQueryRegister.ParamByName('codigo').AsInteger := cod_solicitacao;
+
+  FDQueryRegister.ExecSQL;
 end;
 
 procedure TfrmRegisterSolicitacoes.tcControleChange(Sender: TObject);

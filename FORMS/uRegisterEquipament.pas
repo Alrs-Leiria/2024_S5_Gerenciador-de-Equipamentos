@@ -71,6 +71,9 @@ type
       const ItemObject: TListItemDrawable);
   private
     { Private declarations }
+
+  public
+    { Public declarations }
     function  buscarEquipamentNoBanco( equip : TEquipament) : TEquipament;
     procedure inserirEquipamentNoBanco(equipament : TEquipament);
     procedure atualizarEquipamentNoBanco(equip : TEquipament);
@@ -84,10 +87,8 @@ type
     procedure inserirEquipamentoNaLista( equip : TEquipament);
     var operacao : string;
     var permitirTroca : Boolean;
-  public
-    { Public declarations }
-    procedure limparEdits();
 
+    procedure limparEdits();
     procedure finalizaAcao();
 
     function validarCampos() : Boolean;

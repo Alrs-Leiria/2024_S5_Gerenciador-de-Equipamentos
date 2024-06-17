@@ -35,17 +35,20 @@
     <Transaction>2024/06/10 12:58:29.000.395,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterEquipament.pas</Transaction>
     <Transaction>2024/06/15 22:46:01.000.225,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
     <Transaction>2024/06/15 23:04:29.000.907,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas</Transaction>
-    <Transaction>2024/06/15 23:10:08.000.895,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterSolicitacao.pas</Transaction>
     <Transaction>2024/06/15 23:10:08.000.895,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterSolicitacao.fmx</Transaction>
+    <Transaction>2024/06/15 23:10:08.000.895,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit2.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterSolicitacao.pas</Transaction>
     <Transaction>2024/06/15 23:37:40.000.333,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2024/06/15 23:39:49.000.128,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterSolicitacoes.fmx</Transaction>
     <Transaction>2024/06/15 23:39:49.000.128,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterSolicitacoes.pas</Transaction>
+    <Transaction>2024/06/15 23:39:49.000.128,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterSolicitacoes.fmx</Transaction>
     <Transaction>2024/06/16 02:54:36.519,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
     <Transaction>2024/06/16 02:55:21.647,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterManutencao.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
     <Transaction>2024/06/16 02:55:21.647,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterManutencao.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx</Transaction>
     <Transaction>2024/06/16 03:31:27.992,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2024/06/16 03:31:54.721,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterLiberacao.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx</Transaction>
     <Transaction>2024/06/16 03:31:54.721,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterLiberacao.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2024/06/16 03:31:54.721,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uRegisterLiberacao.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx</Transaction>
+    <Transaction>2024/06/16 18:01:10.282,=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2024/06/16 18:01:24.752,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uLogin.pas=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2024/06/16 18:01:24.752,C:\Users\Anlury\Documents\Projetos\Extensao II TADS\FORMS\uLogin.fmx=C:\Users\Anlury\Documents\Projetos\Extensao II TADS\PROJETO\Unit1.fmx</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="activity-1.1.0.dex.jar"/>
@@ -230,5 +233,7 @@
     <File Path="..\FORMS\uRegisterManutencao.fmx"/>
     <File Path="..\FORMS\uRegisterLiberacao.pas"/>
     <File Path="..\FORMS\uRegisterLiberacao.fmx"/>
+    <File Path="..\FORMS\uLogin.pas"/>
+    <File Path="..\FORMS\uLogin.fmx"/>
   </ProjectSortOrder>
 </BorlandProject>

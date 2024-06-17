@@ -3,6 +3,7 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
   OnClose = FormClose
   DesignerMasterStyle = 0
   inherited tcControle: TTabControl
+    TabIndex = 1
     OnChange = tcControleChange
     Sizes = (
       640s
@@ -10,6 +11,7 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
       640s
       389s)
     inherited tList: TTabItem
+      IsSelected = False
       ExplicitSize.cx = 68.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object lvSolicitacoes: TListView
@@ -33,7 +35,7 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
           item
             AppearanceObjectName = 'txtAssunto'
             AppearanceClassName = 'TTextObjectAppearance'
-            Appearance.Width = 185.000000000000000000
+            Appearance.Width = 265.000000000000000000
             Appearance.Height = 44.000000000000000000
             Appearance.PlaceOffset.X = 38.000000000000000000
           end
@@ -42,14 +44,21 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
             AppearanceClassName = 'TTextObjectAppearance'
             Appearance.Width = 87.000000000000000000
             Appearance.Height = 44.000000000000000000
-            Appearance.PlaceOffset.X = 230.000000000000000000
+            Appearance.PlaceOffset.X = 310.000000000000000000
           end
           item
             AppearanceObjectName = 'txtSituacao'
             AppearanceClassName = 'TTextObjectAppearance'
             Appearance.Width = 71.000000000000000000
             Appearance.Height = 44.000000000000000000
-            Appearance.PlaceOffset.X = 326.000000000000000000
+            Appearance.PlaceOffset.X = 414.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtPrioridade'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 85.000000000000000000
+            Appearance.Height = -68.000000000000000000
+            Appearance.PlaceOffset.X = 510.000000000000000000
           end>
         ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
           item
@@ -60,6 +69,7 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
       end
     end
     inherited tAction: TTabItem
+      IsSelected = True
       ExplicitSize.cx = 47.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object Panel1: TPanel
@@ -179,7 +189,7 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
           Size.Width = 610.000000000000000000
           Size.Height = 40.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 6
+          TabOrder = 7
           Viewport.Width = 610.000000000000000000
           Viewport.Height = 40.000000000000000000
         end
@@ -190,7 +200,7 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
           Size.Width = 212.000000000000000000
           Size.Height = 34.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 7
+          TabOrder = 8
           object lbHTipo: TListBoxGroupHeader
             Size.Width = 19.000000000000000000
             Size.Height = 19.000000000000000000
@@ -223,7 +233,7 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
         end
         object edtCodigo: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 8
+          TabOrder = 9
           Position.X = 518.000000000000000000
           Position.Y = 8.000000000000000000
           Enabled = False
@@ -239,6 +249,54 @@ inherited frmRegisterSolicitacoes: TfrmRegisterSolicitacoes
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           Text = 'Solicita'#231#227'o:'
           TabOrder = 1
+        end
+        object cbxPrioridade: TComboBox
+          ItemIndex = 0
+          Position.X = 8.000000000000000000
+          Position.Y = 325.000000000000000000
+          Size.Width = 133.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 11
+          object ListBoxGroupHeader2: TListBoxGroupHeader
+            IsSelected = True
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            Text = '--Prioridade--'
+          end
+          object ListBoxItem1: TListBoxItem
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Baixa'
+          end
+          object ListBoxItem2: TListBoxItem
+            IsSelected = True
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'Media'
+          end
+          object ListBoxItem3: TListBoxItem
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            Text = 'Alta'
+          end
+        end
+        object lPrioridade: TLabel
+          Position.X = 8.000000000000000000
+          Position.Y = 300.000000000000000000
+          Size.Width = 79.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Prioridade'
+          TabOrder = 6
         end
       end
     end
