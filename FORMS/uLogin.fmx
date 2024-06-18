@@ -14,7 +14,7 @@ object frmLogin: TfrmLogin
     Size.Height = 325.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object Edit1: TEdit
+    object edtId: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 2
       Position.X = 24.000000000000000000
@@ -23,7 +23,7 @@ object frmLogin: TfrmLogin
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
     end
-    object Edit2: TEdit
+    object edtNome: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 1
       Position.X = 89.000000000000000000
@@ -32,7 +32,7 @@ object frmLogin: TfrmLogin
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
     end
-    object Edit3: TEdit
+    object edtSenha: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 0
       Position.X = 24.000000000000000000
@@ -79,6 +79,13 @@ object frmLogin: TfrmLogin
       Size.PlatformDefault = False
       Text = 'Senha'
       TabOrder = 4
+    end
+    object btnLogar: TButton
+      Position.X = 88.000000000000000000
+      Position.Y = 256.000000000000000000
+      TabOrder = 7
+      Text = 'Entrar'
+      OnClick = btnLogarClick
     end
   end
 end
