@@ -234,7 +234,11 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="..\FORMS\uLogin.pas">
-            <Form>Form1</Form>
+            <Form>frmLogin</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\uRegisterAlocacao.pas">
+            <Form>frmRegisterAlocacao</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

@@ -62,6 +62,9 @@ type
   private
     { Private declarations }
 
+
+  public
+    { Public declarations }
     function  buscarUsuarioNoBanco( user : TUser) : TUser;
     procedure inserirUsuarioNoBanco( user : TUser);
     procedure editarUsuarioNoBanco( user : TUser);
@@ -77,8 +80,6 @@ type
     var operacao : string;
     var permitirTroca : Boolean;
 
-  public
-    { Public declarations }
     procedure limparEdits();
 
     procedure finalizaAcao();

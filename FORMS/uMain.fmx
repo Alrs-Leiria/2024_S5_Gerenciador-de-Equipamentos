@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'Menu'
   ClientHeight = 480
   ClientWidth = 640
   FormFactor.Width = 320
@@ -35,6 +35,18 @@ object frmMain: TfrmMain
         Locked = True
         Text = 'Manutencao'
         OnClick = ManutencaoClick
+      end
+    end
+    object Gerencial: TMenuItem
+      Text = 'Gerencial'
+      object Alocacao: TMenuItem
+        Locked = True
+        Text = 'Alocacao'
+        OnClick = AlocacaoClick
+      end
+      object Realocacao: TMenuItem
+        Locked = True
+        Text = 'Realocacao'
       end
     end
   end

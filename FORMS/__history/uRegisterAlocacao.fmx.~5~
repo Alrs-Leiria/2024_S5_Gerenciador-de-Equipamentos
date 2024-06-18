@@ -1,0 +1,180 @@
+inherited frmRegisterAlocacao: TfrmRegisterAlocacao
+  Caption = 'Alocacao'
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  inherited tcControle: TTabControl
+    TabIndex = 1
+    OnChange = tcControleChange
+    Sizes = (
+      640s
+      389s
+      640s
+      389s)
+    inherited tList: TTabItem
+      IsSelected = False
+      ExplicitSize.cx = 68.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object lvAlocacao: TListView
+        ItemAppearanceClassName = 'TDynamicAppearance'
+        ItemEditAppearanceClassName = 'TDynamicAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Position.X = 1.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 377.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'txtCodigo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 33.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = -2.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtEquipamento'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 265.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 38.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtUsuario'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 193.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 318.000000000000000000
+          end
+          item
+            AppearanceObjectName = 'txtTipo'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Width = 71.000000000000000000
+            Appearance.Height = 44.000000000000000000
+            Appearance.PlaceOffset.X = 526.000000000000000000
+          end>
+        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Text1'
+            AppearanceClassName = 'TTextObjectAppearance'
+          end>
+      end
+    end
+    inherited tAction: TTabItem
+      IsSelected = True
+      ExplicitSize.cx = 47.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object checkEmprestimo: TCheckBox
+        Position.X = 69.000000000000000000
+        Position.Y = 198.000000000000000000
+        TabOrder = 4
+        Text = 'Emprestimo'
+      end
+      object dDevolucao: TDateEdit
+        Date = 45459.000000000000000000
+        Position.X = 67.000000000000000000
+        Position.Y = 256.000000000000000000
+        TabOrder = 2
+      end
+      object edtEquipamento: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        Position.X = 67.000000000000000000
+        Position.Y = 142.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        OnChange = edtEquipamentoChange
+      end
+      object edtId: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 1
+        Position.X = 67.000000000000000000
+        Position.Y = 57.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        OnChange = edtIdChange
+      end
+      object edtUser: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 6
+        Position.X = 155.000000000000000000
+        Position.Y = 57.000000000000000000
+        Enabled = False
+        Size.Width = 249.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object edtDescricao: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 5
+        Position.X = 155.000000000000000000
+        Position.Y = 139.000000000000000000
+        Enabled = False
+        Size.Width = 249.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Label2: TLabel
+        Position.X = -187.000000000000000000
+        Position.Y = -144.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'ID'
+        TabOrder = 3
+      end
+      object Label3: TLabel
+        Position.X = 155.000000000000000000
+        Position.Y = 32.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Usuario'
+        TabOrder = 9
+      end
+      object Label4: TLabel
+        Position.X = 67.000000000000000000
+        Position.Y = 117.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Codigo'
+        TabOrder = 8
+      end
+      object Label5: TLabel
+        Position.X = 155.000000000000000000
+        Position.Y = 114.000000000000000000
+        Size.Width = 78.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Equipamento'
+        TabOrder = 7
+      end
+      object lDevolucao: TLabel
+        Position.X = 67.000000000000000000
+        Position.Y = 231.000000000000000000
+        Text = 'Devolucao'
+        TabOrder = 11
+      end
+      object lUsuario: TLabel
+        Position.X = 67.000000000000000000
+        Position.Y = 32.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'ID'
+        TabOrder = 10
+      end
+      object edtCodigo: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 12
+        Position.X = 504.000000000000000000
+        Position.Y = 14.000000000000000000
+        Enabled = False
+      end
+    end
+  end
+end

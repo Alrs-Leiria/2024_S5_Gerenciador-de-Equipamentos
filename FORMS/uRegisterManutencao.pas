@@ -18,6 +18,7 @@ type
   TManutencao = record
   codigo : integer;
   descricao, status : string;
+  valor : Double;
   abertura, fechamento : TDate;
   equipamento : TEquipament;
   solicitacao : TSolicitacao;
@@ -59,6 +60,8 @@ type
     procedure btnCancelRegisterClick(Sender: TObject);
     procedure btnDeleteRegisterClick(Sender: TObject);
     procedure tcControleChange(Sender: TObject);
+    procedure lvManutencaoItemClickEx(const Sender: TObject; ItemIndex: Integer;
+      const LocalClickPos: TPointF; const ItemObject: TListItemDrawable);
   private
     { Private declarations }
   public
@@ -148,7 +151,10 @@ end;
 procedure TfrmRegisterManutencao.limparEdits;
 begin
   edtCodigo.Text := '';
-
+  edtEquipamento.Text := '';
+  edtValor.Text := '';
+  mDescricao.Text := '';
+  cbxStatus.ItemIndex := 1;
 end;
 
 
@@ -243,7 +249,13 @@ end;
 
 procedure TfrmRegisterManutencao.inserirNaLista(manutec: TManutencao);
 begin
-
+  with lvManutencao.Items.Add do
+  begin
+    TListItemText(Objects.FindDrawable('txtCodigo')).Text := IntToStr(manutec.codigo);
+    TListItemText(Objects.FindDrawable('txtStatus')).Text := manutec.status;
+    TListItemText(Objects.FindDrawable('txtEquipamento')).Text := manutec.equipamento.descricao;
+    TListItemText(Objects.FindDrawable('txtPatrimonio')).Text := IntToStr(manutec.equipamento.patrimonio);
+  end;
 end;
 
 procedure TfrmRegisterManutencao.btnCancelRegisterClick(Sender: TObject);
@@ -361,11 +373,32 @@ begin
   while not FDQueryRegister.Eof do
   begin
     vManutencao := preencherFieldFromQuery(vManutencao, FDQueryRegister);
-
+    vManutencao.equipamento := frmRegisterEquipament.buscarEquipamentNoBanco(vManutencao.equipamento);
     inserirNaLista(vManutencao);
 
     FDQueryRegister.Next;
   end;
+end;
+
+procedure TfrmRegisterManutencao.lvManutencaoItemClickEx(const Sender: TObject;
+  ItemIndex: Integer; const LocalClickPos: TPointF;
+  const ItemObject: TListItemDrawable);
+var vManutencao : TManutencao;
+begin
+  inherited;
+  vManutencao.codigo := StrToInt(TListItemText(lvManutencao.Items[ItemIndex].Objects.FindDrawable('txtCodigo')).Text);
+
+  vManutencao := buscarNoBanco(vManutencao);
+
+  edtCodigo.Text := IntToStr(vManutencao.codigo);
+  edtEquipamento.Text := IntToStr(vManutencao.equipamento.codigo);
+  edtValor.Text := FloatToStr(vManutencao.valor);
+  mDescricao.Text := vManutencao.descricao;
+  cbxStatus.ItemIndex := 1;
+
+  operacao := 'editar';
+  tcControle.TabIndex := 1;
+  permitirTroca := False;
 end;
 
 procedure TfrmRegisterManutencao.removerNoBanco(cod_manutec: Integer);

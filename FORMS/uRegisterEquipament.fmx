@@ -3,7 +3,6 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
   OnClose = FormClose
   DesignerMasterStyle = 0
   inherited tcControle: TTabControl
-    TabIndex = 1
     OnChange = tcControleChange
     Sizes = (
       640s
@@ -11,7 +10,6 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       640s
       389s)
     inherited tList: TTabItem
-      IsSelected = False
       ExplicitSize.cx = 68.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object lvEquipamentos: TListView
@@ -83,7 +81,6 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
       end
     end
     inherited tAction: TTabItem
-      IsSelected = True
       ExplicitSize.cx = 47.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object edtCodigo: TEdit
@@ -348,8 +345,8 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
         Size.Height = 104.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 23
-        Viewport.Width = 518.000000000000000000
-        Viewport.Height = 100.000000000000000000
+        Viewport.Width = 522.000000000000000000
+        Viewport.Height = 104.000000000000000000
       end
       object PATRIMONIO: TLabel
         StyledSettings = [Family, FontColor]
@@ -413,7 +410,7 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
     end
   end
   inherited FDQueryRegister: TFDQuery
-    Left = 600
-    Top = 264
+    Left = 456
+    Top = 272
   end
 end
