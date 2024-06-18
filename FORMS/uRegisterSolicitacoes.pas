@@ -60,6 +60,7 @@ type
     procedure btnCancelRegisterClick(Sender: TObject);
     procedure btnNewRegisterClick(Sender: TObject);
     procedure btnDeleteRegisterClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -70,6 +71,7 @@ type
     procedure atualizarNoBanco(solicitacao : TSolicitacao);
     procedure removerNoBanco(cod_solicitacao : Integer);
     procedure listarDoBanco();
+    procedure pesquisarNoBanco(descricao : String);
 
     function preencherObjeto(solicitacao : TSolicitacao) : TSolicitacao;
     function preencherParamFromQuery(solicitacao : TSolicitacao; query : TFDQuery) : TSolicitacao;
@@ -269,6 +271,16 @@ begin
   permitirTroca := false;
 end;
 
+procedure TfrmRegisterSolicitacoes.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  if edtPesquisa.Text ='' then
+  begin
+    listarDoBanco;
+  end else
+        pesquisarNoBanco(edtPesquisa.Text);
+end;
+
 procedure TfrmRegisterSolicitacoes.btnSaveRegisterClick(Sender: TObject);
 var vSolicitacao : TSolicitacao;
 begin
@@ -397,6 +409,32 @@ begin
   operacao := 'editar';
   tcControle.TabIndex := 1;
   permitirTroca := False;
+end;
+
+procedure TfrmRegisterSolicitacoes.pesquisarNoBanco(descricao: String);
+var solicitacao : TSolicitacao;
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('SELECT * FROM solicitacoes');
+  FDQueryRegister.SQL.Add('WHERE detalhamento LIKE :descricao');
+  FDQueryRegister.ParamByName('descricao').AsString := '%' + descricao + '%';
+
+  FDQueryRegister.Open();
+
+  FDQueryRegister.First;
+
+  lvSolicitacoes.Items.Clear;
+
+  while not FDQueryRegister.Eof do
+  begin
+    solicitacao := preencherFieldFromQuery(solicitacao, FDQueryRegister);
+
+    inserirNaLista(solicitacao);
+
+    FDQueryRegister.Next;
+  end;
 end;
 
 function TfrmRegisterSolicitacoes.preencherFieldFromQuery(

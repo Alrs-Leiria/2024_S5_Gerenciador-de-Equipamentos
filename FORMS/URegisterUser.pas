@@ -58,6 +58,7 @@ type
     procedure btnDeleteRegisterClick(Sender: TObject);
     procedure btnCancelRegisterClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnPesquisarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -70,6 +71,7 @@ type
     procedure editarUsuarioNoBanco( user : TUser);
     procedure removerUsuarioNoBanco(id_user : Integer);
     procedure listarUsuario();
+    procedure pesquisarNoBanco(nome : String);
 
     function preencherObjetoUsario(user : TUser) : TUser;
     function PreencherUsuarioFieldFromQuery(user : TUser; query : TFDQuery) : TUser;
@@ -194,6 +196,16 @@ begin
   operacao := 'inserir';
   tcControle.TabIndex := 1;
   permitirTroca := false;
+end;
+
+procedure TfrmRegisterUser.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  if edtPesquisa.Text ='' then
+  begin
+    listarUsuario;
+  end else
+        pesquisarNoBanco(edtPesquisa.Text);
 end;
 
 procedure TfrmRegisterUser.btnSaveRegisterClick(Sender: TObject);
@@ -391,6 +403,32 @@ begin
   operacao := 'editar';
   tcControle.TabIndex := 1;
   permitirTroca := False;
+end;
+
+procedure TfrmRegisterUser.pesquisarNoBanco(nome: String);
+var user : TUser;
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('SELECT * FROM usuario');
+  FDQueryRegister.SQL.Add('WHERE nome LIKE :nome');
+  FDQueryRegister.ParamByName('nome').AsString := '%' + nome + '%';
+
+  FDQueryRegister.Open();
+
+  FDQueryRegister.First;
+
+  lvUsuarios.Items.Clear;
+
+  while not FDQueryRegister.Eof do
+  begin
+    user := PreencherUsuarioFieldFromQuery(user, FDQueryRegister);
+
+    inserirUsuarionaLista(user);
+
+    FDQueryRegister.Next;
+  end;
 end;
 
 function TfrmRegisterUser.preencherObjetoUsario(user: TUser): TUser;

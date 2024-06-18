@@ -25,6 +25,7 @@ type
     procedure SolicitacoesClick(Sender: TObject);
     procedure ManutencaoClick(Sender: TObject);
     procedure AlocacaoClick(Sender: TObject);
+    procedure RealocacaoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -43,6 +44,21 @@ implementation
 
 procedure TfrmMain.AlocacaoClick(Sender: TObject);
 begin
+  frmRegisterAlocacao.limparEdits;
+  frmRegisterAlocacao.tcControle.Tabs[0].Visible := False;
+  frmRegisterAlocacao.tcControle.Tabs[0].Enabled := False;
+  frmRegisterAlocacao.dDevolucao.IsChecked := False;
+  frmRegisterAlocacao.operacao := 'inserir';
+  frmRegisterAlocacao.tcControle.TabIndex := 1;
+  frmRegisterAlocacao.permitirTroca := false;
+  frmRegisterAlocacao.Show;
+end;
+
+procedure TfrmMain.RealocacaoClick(Sender: TObject);
+begin
+  frmRegisterAlocacao.operacao := '';
+  frmRegisterAlocacao.tcControle.Tabs[0].Visible := True;
+  frmRegisterAlocacao.tcControle.Tabs[0].Enabled := True;
   frmRegisterAlocacao.tcControle.TabIndex := 0;
   frmRegisterAlocacao.Show;
 end;

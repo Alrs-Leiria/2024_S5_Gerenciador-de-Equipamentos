@@ -14,14 +14,15 @@ uses
   uRegisterManutencao in '..\FORMS\uRegisterManutencao.pas' {frmRegisterManutencao},
   uRegisterLiberacao in '..\FORMS\uRegisterLiberacao.pas' {frmRegisterLiberacao},
   uLogin in '..\FORMS\uLogin.pas' {frmLogin},
-  uRegisterAlocacao in '..\FORMS\uRegisterAlocacao.pas' {frmRegisterAlocacao};
+  uRegisterAlocacao in '..\FORMS\uRegisterAlocacao.pas' {frmRegisterAlocacao},
+  uRegisterOcorrencia in '..\FORMS\uRegisterOcorrencia.pas' {frmRegisterOcorrencia};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TdmData, dmData);
   Application.CreateForm(TfrmConfigDatabase, frmConfigDatabase);
   Application.CreateForm(TfrmRegister, frmRegister);
@@ -31,5 +32,6 @@ begin
   Application.CreateForm(TfrmRegisterManutencao, frmRegisterManutencao);
   Application.CreateForm(TfrmRegisterLiberacao, frmRegisterLiberacao);
   Application.CreateForm(TfrmRegisterAlocacao, frmRegisterAlocacao);
+  Application.CreateForm(TfrmRegisterOcorrencia, frmRegisterOcorrencia);
   Application.Run;
 end.

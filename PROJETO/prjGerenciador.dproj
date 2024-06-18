@@ -237,6 +237,10 @@
             <Form>frmRegisterAlocacao</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\FORMS\uRegisterOcorrencia.pas">
+            <Form>frmRegisterOcorrencia</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

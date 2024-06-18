@@ -69,6 +69,7 @@ type
     procedure lvEquipamentosItemClickEx(const Sender: TObject;
       ItemIndex: Integer; const LocalClickPos: TPointF;
       const ItemObject: TListItemDrawable);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -79,6 +80,7 @@ type
     procedure atualizarEquipamentNoBanco(equip : TEquipament);
     procedure removerEquipamentNoBanco(cod_equipamento : Integer);
     procedure listarEquipaments();
+    procedure pesquisarNoBanco(descricao : String);
 
     function preencherObjetoEquipamento(equip : TEquipament) : TEquipament;
     function preencherEquipamentoFieldFromQuery(equip : TEquipament; query : TFDQuery) : TEquipament;
@@ -179,6 +181,16 @@ begin
   operacao := 'inserir';
   tcControle.TabIndex := 1;
   permitirTroca := false;
+end;
+
+procedure TfrmRegisterEquipament.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  if edtPesquisa.Text ='' then
+  begin
+    listarEquipaments;
+  end else
+        pesquisarNoBanco(edtPesquisa.Text);
 end;
 
 procedure TfrmRegisterEquipament.btnSaveRegisterClick(Sender: TObject);
@@ -436,6 +448,32 @@ begin
   operacao := 'editar';
   tcControle.TabIndex := 1;
   permitirTroca := False;
+end;
+
+procedure TfrmRegisterEquipament.pesquisarNoBanco(descricao: String);
+var equip : TEquipament;
+begin
+  FDQueryRegister.Close;
+  FDQueryRegister.SQL.Clear;
+
+  FDQueryRegister.SQL.Add('SELECT * FROM equipamentos');
+  FDQueryRegister.SQL.Add('WHERE descricao LIKE :descricao');
+  FDQueryRegister.ParamByName('descricao').AsString := '%' + descricao + '%';
+
+  FDQueryRegister.Open();
+
+  FDQueryRegister.First;
+
+  lvEquipamentos.Items.Clear;
+
+  while not FDQueryRegister.Eof do
+  begin
+    equip := preencherEquipamentoFieldFromQuery(equip, FDQueryRegister);
+
+    inserirEquipamentoNaLista(equip);
+
+    FDQueryRegister.Next;
+  end;
 end;
 
 function TfrmRegisterEquipament.preencherEquipamentoFieldFromQuery(

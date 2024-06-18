@@ -8,7 +8,8 @@ uses
   FMX.Controls.Presentation, uDataModule, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  FireDAC.Comp.Client, Data.DB, FireDAC.Comp.DataSet, FMX.Menus, FMX.TabControl;
+  FireDAC.Comp.Client, Data.DB, FireDAC.Comp.DataSet, FMX.Menus, FMX.TabControl,
+  FMX.Edit;
 
 type
   TfrmRegister = class(TForm)
@@ -22,16 +23,21 @@ type
     tList: TTabItem;
     tAction: TTabItem;
     FDQueryRegister: TFDQuery;
+    pnPesquisa: TPanel;
+    edtPesquisa: TEdit;
+    btnPesquisar: TButton;
     procedure btnNewRegisterClick(Sender: TObject);
     procedure btnSaveRegisterClick(Sender: TObject);
     procedure btnCancelRegisterClick(Sender: TObject);
     procedure btnDeleteRegisterClick(Sender: TObject);
     procedure btnQuitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure pesquisarNoBanco();
 
   end;
 
@@ -51,6 +57,11 @@ begin
 
 end;
 
+procedure TfrmRegister.btnPesquisarClick(Sender: TObject);
+begin
+  pesquisarNoBanco();
+end;
+
 procedure TfrmRegister.btnSaveRegisterClick(Sender: TObject);
 begin
 {
@@ -65,6 +76,11 @@ end;
 procedure TfrmRegister.FormCreate(Sender: TObject);
 begin
   FDQueryRegister.Open;
+end;
+
+procedure TfrmRegister.pesquisarNoBanco;
+begin
+
 end;
 
 procedure TfrmRegister.btnDeleteRegisterClick(Sender: TObject);

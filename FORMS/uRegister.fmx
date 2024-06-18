@@ -118,6 +118,29 @@ object frmRegister: TfrmRegister
       Text = 'Listagem'
       ExplicitSize.cx = 68.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
+      object pnPesquisa: TPanel
+        Align = Top
+        Size.Width = 640.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object edtPesquisa: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 0
+          Position.X = 42.000000000000000000
+          Position.Y = 11.000000000000000000
+          Size.Width = 415.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object btnPesquisar: TButton
+          Position.X = 496.000000000000000000
+          Position.Y = 11.000000000000000000
+          TabOrder = 1
+          Text = 'Pesquisar'
+          OnClick = btnPesquisarClick
+        end
+      end
     end
     object tAction: TTabItem
       CustomIcon = <

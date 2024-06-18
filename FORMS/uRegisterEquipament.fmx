@@ -12,15 +12,17 @@ inherited frmRegisterEquipament: TfrmRegisterEquipament
     inherited tList: TTabItem
       ExplicitSize.cx = 68.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
+      inherited pnPesquisa: TPanel
+        TabOrder = 1
+      end
       object lvEquipamentos: TListView
         ItemAppearanceClassName = 'TDynamicAppearance'
         ItemEditAppearanceClassName = 'TDynamicAppearance'
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
-        Position.X = 1.000000000000000000
-        Position.Y = 8.000000000000000000
+        Align = Client
         Size.Width = 640.000000000000000000
-        Size.Height = 377.000000000000000000
+        Size.Height = 348.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
